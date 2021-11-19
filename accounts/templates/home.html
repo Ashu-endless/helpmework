@@ -1,0 +1,98 @@
+
+
+{% extends 'base.html' %}
+ {% load static %}
+{% block headload %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock headload %}
+{% block nav %}
+<nav> <input type="text" name="" id="searchhelpmework" placeholder="search">  <i class="bi bi-search searchicon"></i> <span class="titlemain">Help me work</span>   <div class="profile_div" ><span class="profile" ></span> <i class="bi bi-caret-down-fill profile_dropdownicon"></i> </div> </nav>
+<div id="searchModal" >
+    <i class="bi bi-x-circle hidemyprnt"></i>
+    <div id="searchModalDiv"></div>
+</div>
+<div id="pofile_arrowbox" >
+<a href="{% url 'view_profile' request.user %}"  class="arrowboxbtn">
+  {{request.user}}
+</a>
+
+<div class="arrowboxbtn">Share</div>
+<div class="arrowboxbtn">Edit profile</div>   
+
+<form class="arrowboxbtn" action="/logout" method="GET">
+<button type="submit" class="logoutbtn"> logout</button></form>
+
+</div>
+{% endblock nav %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+ 
+<div id="HomeworkHome" >
+ {% for homework in homeworks %}
+
+<div class="homework_container" >
+<div class="postedby_profile" >
+<span class="postedby_profilepic profile" ></span>
+<span class="homework_postedby"> {{homework.postedby}}</span>
+<span class="homework_posttime" > {{homework.posttime | date:"d M Y f A"}}</span>
+</div>
+<div class="homework_img_divs"></div>
+<span class="homework_description" > {{homework.description}}</span>
+
+
+<div class="homework_upvoted_by_div">
+
+{% if request.user in homework.upvoted_by.all %} 
+
+<i class="bi bi-hand-thumbs-up-fill upvote_btn"></i>
+{% else %}
+<i class="bi bi-hand-thumbs-up upvote_btn" ></i>
+{% endif %} 
+
+
+
+<span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
+<i class="bi bi-share"></i>
+<i class="bi bi-file-earmark-arrow-down"></i>
+
+
+ </div>
+
+
+
+<div style="display:none;" >
+{% for voters in homework.upvoted_by.all %}
+{{voters}}
+{% endfor %}
+</div>
+<span class="homework_no"> {{homework.pk}}</span>
+
+</div>
+{% comment %} Container  {% endcomment %}
+
+{% endfor %}
+
+{% comment %} Container ka container {% endcomment %}
+
+</div>
+
+
+
+
+
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'home.js' %}" type="module"></script>
+
+{% endblock script %}
+
+
