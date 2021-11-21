@@ -39,16 +39,16 @@ searchhelpmework.oninput=(e)=>{
         type: 'POST',
         data: data,
       }).done(function(response) {
-        document.querySelector('#searchModalDiv').innerHTML = ""
-          console.log(response.todos) // let's just print the data in the console for now
-        for(var i in response.todos){
+        document.querySelector('#UsersearchModalDiv').innerHTML = ""
+          console.log(response) // let's just print the data in the console for now
+        for(var i in response.users){
             //console.log(i.fields.username,"A")
             var a = document.createElement('a');
-            a.setAttribute('href',`/view_profile/${response.todos[i].fields.username}/` )
-            a.innerHTML = response.todos[i].fields.username
-            document.querySelector('#searchModalDiv').append(a)
+            a.setAttribute('href',`/view_profile/${response.users[i].fields.username}/` )
+            a.innerHTML = response.users[i].fields.username
+            document.querySelector('#UsersearchModalDiv').append(a)
             a.classList.add('a_result');
-            console.log(response.todos[i].fields.username)
+            console.log(response.users[i].fields.username)
         }
         
         })

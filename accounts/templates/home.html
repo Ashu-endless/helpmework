@@ -9,7 +9,9 @@
 <nav> <input type="text" name="" id="searchhelpmework" placeholder="search">  <i class="bi bi-search searchicon"></i> <span class="titlemain">Help me work</span>   <div class="profile_div" ><span class="profile" ></span> <i class="bi bi-caret-down-fill profile_dropdownicon"></i> </div> </nav>
 <div id="searchModal" >
     <i class="bi bi-x-circle hidemyprnt"></i>
-    <div id="searchModalDiv"></div>
+    <div id="usernhw_search_switcher" > <div>User</div> <div>Homeworks</div>  </div>
+    <div id="UsersearchModalDiv" class="searchModalDiv"></div>
+    <div id="HomeworksearchModalDiv"class="searchModalDiv" ></div>
 </div>
 <div id="pofile_arrowbox" >
 <a href="{% url 'view_profile' request.user %}"  class="arrowboxbtn">

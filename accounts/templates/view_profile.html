@@ -3,18 +3,19 @@
 
 
 {% block content %}
-<div class="viewprofile_user">
-{{user}}
+
+<div class="view_profile_div" >
+    <span class="profile view_profile_pic" ></span>
+    <div class="viewprofile_user">
+        {{user}}
+        </div>
+<div class="viewprofile_user_bio">
+    {{mainprofile.bio}}
 </div>
+</div>
+
+
  
 
-<style>
-.viewprofile_user {
-    position: fixed;
-    top: 60px;
-    font-size: x-large;
-    font-family: patrick hand;
-}
 
-</style>
 {% endblock content %}

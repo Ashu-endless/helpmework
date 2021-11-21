@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.core import serializers
 from .models import helpmework
+from .models import MainProfile
 import json
 #ashu_endless
 #onmywaytosuccess
@@ -24,12 +25,12 @@ def homepage(request):
     print(homeworks)
     context = {'data':data}
     print(context['data'])
-    print(helpmework.objects.get(postedby="1"))
-    raj = helpmework.objects.get(postedby="1")
-    print(raj.upvoted_by.all())
-    raj.upvoted_by.add(User.objects.get(username='Ashu_Endless'))
-    print(User.objects.get(username='Ashu_Endless'))
-    print(raj.upvoted_by)
+    #print(helpmework.objects.get(postedby="1"))
+    #raj = helpmework.objects.get(postedby="1")
+    #print(raj.upvoted_by.all())
+    #raj.upvoted_by.add(User.objects.get(username='Ashu_Endless'))
+    #print(User.objects.get(username='Ashu_Endless'))
+    #print(raj.upvoted_by)
     #raj.upvoted_by.add(1)
     return render(request, "home.html",{'context':context,'homeworks':homeworks})
     #return HttpResponse(request.user.username)
@@ -85,26 +86,35 @@ def user_login(request):
 def user_search(request):
 
     if request.method == 'POST':
-        todo_name = request.POST.get('todo_name')
-        print(todo_name)
-        #todo = list(User.objects.filter(username=todo_name))
-        #todo = User.objects.filter(username=todo_name).values()
-        todo = serializers.serialize("json", User.objects.filter(username__startswith=todo_name))
-        users = User.objects.all()
-        #for i in todo:
-          #  print(i.user_name)
-        print(json.loads(todo))
-        data  = json.loads(todo)
-        print(type(data[0]))
-        for key, value in data[0].items():
-            print( key, value)
-        for key, value in data[0].items():
-            print( key, value)
-        return JsonResponse({'todos': json.loads(todo)})
+        query = request.POST.get('todo_name')
+        #print(query)
+        query_user = serializers.serialize("json", User.objects.filter(username__startswith=query))
+        query_homework = serializers.serialize("json", helpmework.objects.filter(description__startswith=query))
+
+        users  = json.loads(query_user)
+        homeworks = json.loads(query_homework)
+        # for key, value in data[0].items():
+        #     print( key, value)
+        # for key, value in data[0].items():
+        #     print( key, value)
+        print(homeworks)
+        return JsonResponse({'users': users,'homeworks':homeworks})
 
 
-def view_profile(request,username):
-    return render(request, "view_profile.html",{'user':username})
+def view_profile(request,user_name):
+    #MainProfiles = MainProfile.objects.get(username=user_name)
+    # if MainProfile.objects.get(user= User.objects.get(username=user_name)).exists():
+    #     print(True);
+    # else:
+    #     print(False)
+    try:
+        MainProfiles = MainProfile.objects.get(user= User.objects.get(username=user_name))
+    except:
+        MainProfiles = MainProfile(user= User.objects.get(username=user_name),bio="")
+        MainProfiles.save()
+    #print(json.loads(MainProfiles))
+    print(MainProfiles.bio)
+    return render(request, "view_profile.html",{'user':user_name,'mainprofile':MainProfiles})
 
 
 def upvoted_a_homework(request):
@@ -112,8 +122,17 @@ def upvoted_a_homework(request):
          upvoted_by = request.POST.get('upvotedby_username')
          homework = request.POST.get('homework')
          get_homework = helpmework.objects.get(pk=homework)
+         users = User.objects.all()
          print(get_homework)
-
+         #print(upvoted_by.pk)
+         #print(User.objects.get(username=upvoted_by))
+         #print(request.user.id)
+         if (request.user in get_homework.upvoted_by.all()):
+            get_homework.upvoted_by.remove(request.user.id)
+         else:
+             get_homework.upvoted_by.add(request.user.id)
+         #get_homework.upvoted_by.add(request.user.id)
+        #get_homework.upvoted_by.add()
          return JsonResponse({'success':'true'})
 
   

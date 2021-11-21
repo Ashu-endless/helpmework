@@ -28,10 +28,33 @@ button {
   background-color: tomato;
   margin-bottom: 10px;
   position: relative;
+  max-width: 350px;
+  left: 35%;
 
+}
+.view_profile_div{
+  position: absolute;
+  top: 50px;
+  bottom: 50%;
+  width: 100%;
 }
 
 
+.viewprofile_user {
+  position: absolute;
+  font-size: x-large;
+  font-family: patrick hand;
+  left: 40%;
+  top: 10px;
+}
+.viewprofile_user_bio{
+  position: absolute;
+  left: 40%;
+  top: 30%;
+  font-family: 'Patrick Hand';
+  right: 0;
+  height: 30%;
+}
 span.homework_postedby {
     position: absolute;
     width: 50%;
@@ -92,4 +115,10 @@ span.homework_posttime {
 
 .homework_no{
     display: none;
+}
+
+.view_profile_pic{
+  left: 10px;
+  height: 200px !important;
+  width: 200px !important;
 }
