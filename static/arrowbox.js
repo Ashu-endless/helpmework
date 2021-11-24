@@ -1,4 +1,4 @@
-console.log('sds')
+
 
 export function NewArrowBox(json) {
     var linker = '_' + Math.random().toString(36).substr(2, 9)
@@ -56,7 +56,37 @@ export function RemoveArrowBox(elem){
     // elem.removeEventListener('click', arrowBoxShowfunc)
 
 }
+var el
+export function gettarget(e, clas) {
+    if (e.target.classList.contains(clas) || e.target.id == clas || (e.target.getAttribute(clas) != null && e.target.getAttribute(clas) != "true" && e.target.getAttribute(clas) != "false")) {
+        return e.target
+    } else {
+        return getparent(e.target, clas)
+    }}
 
+
+export function getparent(element, clas, attr) {
+        for (var parent of $(element).parents()) {
+            if (attr != undefined) {
+                if (parent.getAttribute(clas) == attr) { return parent }
+    
+            } else if (parent.classList.contains(clas) || parent.id == clas || (parent.getAttribute(clas) != null && parent.getAttribute(clas) != "true" && parent.getAttribute(clas) != "false")) {
+                return parent
+    
+    
+            }
+        }
+        return null
+    }
+
+
+document.body.addEventListener('click', function(e) {
+    if (gettarget(e, "arrowboxfor") == null && gettarget(e, "arrowboxbtnfor") == null) {
+        for (el of document.querySelectorAll('[arrowboxfor]')) {
+            el.style.display = "none"
+        }
+    }
+})
 
 // document.body.addEventListener('click',function(e){
 // if()

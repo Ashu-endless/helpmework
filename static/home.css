@@ -37,9 +37,12 @@ body {
 }
 
 .titlemain {
-  font-size: large;
+  font-size: xx-large;
   position: absolute;
   left: 40%;
+  text-decoration: none;
+  color: white;
+  font-family: amatic sc;
 }
 
 .searchicon {
@@ -68,24 +71,48 @@ body {
 }
 
 #HomeworksearchModalDiv {
-  display: none;
+  display: block;
+  flex-flow: wrap;
+  overflow-y: auto;
+  gap: 5%;
+  padding: 5%;
+}
+
+
+.usernhw_search_switcher_span {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: grid;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: grid;
+  align-content: center;
+  border-right: 2px solid white;
+  grid-auto-flow: column;
+  justify-content: center;
+  gap: 5px;
 }
 
 #usernhw_search_switcher {
-    display: grid;
-    grid-auto-flow: column;
-    position: absolute;
-    right: 5%;
-    left: 5%;
-    border: 1px white solid;
-    justify-content: space-around;
-    height: 40px;
-    font-size: larger;
-    font-family: fantasy;
-    align-items: center;
-    top: 60px;
-    background: #0b1936;
-    border-radius: 5px;
+  display: grid;
+  grid-auto-flow: column;
+  position: absolute;
+  right: 5%;
+  left: 5%;
+  border: 1px white solid;
+  justify-content: space-around;
+  height: 40px;
+  font-size: larger;
+  font-family: fantasy;
+  align-items: center;
+  top: 60px;
+  background: #5f8fd3;
+  border-radius: 5px;
+  grid-template-columns: 50% 50%;
+  overflow: hidden;
 }
 
 .searchModalDiv {
@@ -161,6 +188,16 @@ body {
   z-index: 1;
   background: rgb(0 0 0 / 68%);
 }
+#shareModal {
+  display: none;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: rgb(0 0 0 / 68%);
+}
 
 .hidemyprnt {
   position: absolute;
@@ -168,4 +205,224 @@ body {
   top: 0px;
   color: wheat;
   font-size: xx-large;
+}
+
+img.homework_img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.shareModalDiv {
+  position: absolute;
+  top: 60px;
+  display: grid;
+  right: 5%;
+  left: 5%;
+  bottom: 5%;
+  border-radius: 2px;
+  filter: drop-shadow(2px 4px 6px black);
+  background-color: #0d1117;
+  background-repeat: round;
+  background-size: contain;
+  align-content: baseline;
+}
+.upload_image {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.upload_image_div{
+  height: 100px;
+  width: 100px;
+  background: black;
+  border: 1px dashed white;
+  position: absolute;
+  top: 20%;
+  left: 45%;
+  right: 50%;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  font-size: large;
+  font-family: monospace;
+  align-content: space-around;
+  text-align: center;
+  border-radius: 5px;
+}
+
+#Sharebtn {
+  position: absolute;
+  bottom: 0;
+  height: 8%;
+  background: #4c4abd;
+  left: 0;
+  right: 0;
+  font-family: FANTASY;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+
+#about_label {
+  position: absolute;
+  bottom: 26%;
+  font-family: system-ui;
+  padding: 5px 15px 5px 15px;
+  width: fit-content;
+  background: #4c4abd;
+  border-radius: 2px;
+  text-align: center;
+  font-size: smaller;
+  left: 5px;
+}
+#about_input {
+  position: absolute;
+  top: 75%;
+  right: 5px;
+  left: 5px;
+  height: 15%;
+  word-break: break-all;
+  border: 1px white dotted;
+}
+
+.unactive_img{
+  display: none;
+}
+.active_img{
+  display: block;
+}
+
+
+
+#previewing_img {
+  position: absolute;
+  top: 5px;
+  height: 45%;
+  background: darkblue;
+  width: 50%;
+  left: 25%;
+  border-radius: 5px;
+  background-repeat: round;
+  background-size: cover;
+}
+
+#preview_img_div {
+  position: absolute;
+  height: 16%;
+  border: 1px white dotted;
+  right: 2px;
+  left: 2px;
+  display: grid;
+  top: 50%;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  gap: 5px;
+  padding: 3px;
+}
+
+.preview_img {
+  position: relative;
+  background: red;
+  width: 50px;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  border-radius: 2px;
+}
+
+#shareModalDivpost{
+  display: none;
+}
+
+
+#sml_upload_img_div {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  font-size: small;
+  font-family: monospace;
+  align-content: space-around;
+  text-align: center;
+  border: 1px white dashed;
+  background: none;
+}
+
+#NSUF,
+#NSHF {
+  position: relative;
+  left: 0;
+  right: 0;
+  color: #dcfbfd;
+  border: 2px red solid;
+  display: block;
+  padding: 10px;
+  font-family: system-ui;
+  text-decoration: none;
+  max-height: 50px;
+  font-family: fantasy;
+}
+
+.hide{
+  display: none;
+}
+
+
+
+
+
+.search_hw_Container {
+  position: relative;
+  left: 0;
+  right: 0;
+  color: white;
+  border: 1px white solid;
+  display: block;
+  /* padding: 5px; */
+  font-family: system-ui;
+  text-decoration: none;
+  max-height: 300px;
+  max-width: 300px;
+  min-height: 200px;
+  overflow: hidden;
+  width: 200px;
+  height: 300px;
+  border-radius: 5px;
+}
+
+
+.search_hw_img {
+  height: 79%;
+  position: absolute !important;
+  left: 5px;
+  right: 5px;
+  display: block;
+}
+
+
+.search_hw_desc {
+  position: absolute;
+  top: 80%;
+  height: 20%;
+  overflow-y: auto;
+  background: rgb(134 111 171 / 86%);
+  padding-left: 5px;
+  left: 0;
+  right: 0;
+}
+#save_profile_btn,
+#edit_profile_btn{
+    position: absolute;
+    left: 40%;
+    top: 200px;
+    background: #a265db;
+    padding: 5px;
+    border-radius: 2px;
+    font-family: monospace;
 }

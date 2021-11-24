@@ -39,11 +39,12 @@
 
 .arrowboxbtn {
     height: 30px;
-    font-family: fantasy;
+    font-family: system-ui;
     color: aliceblue;
     text-decoration: none;
     display: grid;
     align-items: center;
     background: #0d1117;
-    border: 1px #2523bf solid;
+    cursor: pointer;
+    border: 1px #fbfcff solid;
 }

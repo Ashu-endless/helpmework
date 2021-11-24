@@ -9,9 +9,24 @@
     <div class="viewprofile_user">
         {{user}}
         </div>
-<div class="viewprofile_user_bio">
+    <div class="viewprofile_user_bio">
+        {{mainprofiles.bio}}
+        </div>
+
+    {% if mainprofiles.user == request.user %}
+    <div  id="edit_profile_btn">
+    edit bio
+</div>
+    <div contentEditable="" id="save_profile_btn" class="hide">
+    save bio
+</div>
+    {% else %}
+    <div class="viewprofile_user_bio">
     {{mainprofile.bio}}
 </div>
+    {% endif %}
+
+
 </div>
 
 
