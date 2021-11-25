@@ -83,10 +83,12 @@ WSGI_APPLICATION = 'helpmework.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Helpmework',
-        'USER': 'postgres',
-        'PASSWORD':'postgrestrial',
-        'HOST':'localhost',
+        'NAME': 'd5k16ga6b9bm8',
+        'USER': 'wgvzmwbfmtaxjw',
+        'PASSWORD':'9237bfc438312cf7329c7b8392c2630adcea68d6b42e15f7aafdd7ad0472bb44',
+        'HOST':'ec2-3-211-3-53.compute-1.amazonaws.com'
+        ,'PORT':'5432'
+,
     }
 }
 
