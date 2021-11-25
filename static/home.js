@@ -311,3 +311,12 @@ for(var el of document.querySelectorAll('.bi-share')){
     navigator.clipboard.writeText("copyText'''.value")
   })
 }
+
+// document.querySelector('#edit_profile_btn').addEventListener('click',function(){
+//   this.style.display = "none";
+//   document.querySelector('#save_profile_btn').style.display = "block"
+//   document.querySelector('.viewprofile_user_bio').style.border = '1px dashed white';
+//   document.querySelector('.viewprofile_user_bio').contentEditable = true
+
+  
+// })

@@ -160,3 +160,8 @@ def sharehomework(request):
 def view_homework(request,hw_id):
         homework = helpmework.objects.get(id=hw_id)
         return render(request, "home.html",{'homework':homework})
+
+def update_profile(request):
+    mainProfile = MainProfile.objects.get(user=request.user.id)
+    print(mainProfile)
+    

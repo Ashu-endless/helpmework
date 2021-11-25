@@ -12,6 +12,7 @@
     border-width: 15px;
     margin-left: -15px;
 }
+
 [arrowposition='down']:after {
     top: 100%;
     left: 50%;
@@ -47,4 +48,24 @@
     background: #0d1117;
     cursor: pointer;
     border: 1px #fbfcff solid;
+}
+
+.message {
+    position: absolute;
+    height: fit-content;
+    /* width: 140px; */
+    color: white;
+    background: #323232;
+    padding: 15px 30px;
+    text-align: center;
+    top: 80%;
+    left: 10px;
+    font-size: larger;
+    color: white;
+    font-family: system-ui;
+    border-radius: 2px;
+    /* font-family: hel; */
+    transition: 2s linear all;
+    display: none;
+    /* border: 1px orange solid; */
 }

@@ -69,7 +69,7 @@
 <div class="homework_img_divs">
 {% for voters in homework.imgsrcs %}
 
-<img  src={{ voters }} class="homework_img {% cycle 'active_img' 'unactive_img' %}">
+<img  src={{ voters }} class="homework_img {% cycle 'active_img' 'unactive_img' 'unactive_img' 'unactive_img' 'unactive_img' 'unactive_img' 'unactive_img' %}">
 {% endfor %}
 </div>
 {% comment %} |slice:"1:-1" {% endcomment %}
@@ -109,7 +109,7 @@
 
 
 
- 
+ {% comment %} ????????!!!!!!!!!!!! {% endcomment %}
 
  {% for homework in homeworks %}
 
@@ -123,9 +123,13 @@
 <i class="bi bi-caret-right-fill img-slide-right"></i>
 <div class="homework_img_divs">
 {% for voters in homework.imgsrcs %}
-
-<img  src={{ voters }} class="homework_img {% cycle 'active_img' 'unactive_img' %}">
+{% if forloop.counter == 1 %}
+<img  src={{ voters }} class="homework_img active_img">
+{% else %}
+<img  src={{ voters }} class="homework_img unactive_img">
+{% endif %}
 {% endfor %}
+
 </div>
 {% comment %} |slice:"1:-1" {% endcomment %}
 
@@ -145,8 +149,7 @@
 
 <span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
 <i class="bi bi-share" data-toggle="message" data-target="#1" data-expire="2000"></i>
-<i class="bi bi-file-earmark-arrow-down"></i>
-
+<i class="bi bi-file-earmark-arrow-down" data-toggle="message" data-target="#2" data-expire="2000"></i>
 
  </div>
 
@@ -174,18 +177,21 @@
 
 
 <div id="1" class="message fade">
-  This is a message
-  <a href="#">Undo</a>
+  share link copied to clipboard
+</div>
+
+<div id="2" class="message fade">
+  Downloading homeworks
 </div>
 
 
-<button type="button" data-toggle="message" data-target="#1">
+{% comment %} button type="button" data-toggle="message" data-target="#1">
   Open message
 </button>
 
 <button type="button" data-toggle="message" data-target="#1" data-expire="2000">
   Open disappearing message
-</button>
+</button>< {% endcomment %}
 {% endblock content %}
 
 {% block script %}
