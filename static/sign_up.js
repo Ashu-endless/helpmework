@@ -34,7 +34,7 @@ document.querySelector('[name="username"]').addEventListener('input', function (
             document.querySelector('#SignUp_btn').type = "submit" }
         else{
             document.querySelector('[name="username"]').style.color = "red"
-            $('[name="username"]').notify("Username already takes", "error")
+            $('[name="username"]').notify("Username already taken", "error")
             document.querySelector('#SignUp_btn').type = "button"
         }
     })

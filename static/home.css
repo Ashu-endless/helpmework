@@ -439,6 +439,24 @@ img.homework_img {
     height: 100px !important;
     width: 100px !important;
 }
+.hidemyprnt {
+  position: fixed;
+  right: 10%;
+  top: 0px;
+  color: rgb(255 228 246);
+  font-size: xx-large;
+}
+.searchModalDiv {
+  
+  top: 50px;}
+ 
+
+
+#usernhw_search_switcher {
+  top: 10px;
+  
+}
+
 
 }
 

@@ -98,7 +98,7 @@ span.homework_description {
 span.homework_posttime {
     position: absolute;
     right: 2%;
-    font-size: small;
+    font-size: xx-small;
     width: 50%;
     text-align: right;
 }

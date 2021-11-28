@@ -340,9 +340,12 @@ for(var el of document.querySelectorAll('.bi-share')){
 
 document.querySelector('#HMWSearchIcon').addEventListener('click',function(){
   document.querySelector('#searchhelpmework').style.display = "block"
+  document.querySelector('.profile_div').style.display = "none"
 })
 
 document.body.addEventListener('click',function(e){
   if(e.target.id != 'searchhelpmework' && e.target.id != 'HMWSearchIcon' && e.target.id != 'HomeworksearchModalDiv' && getparent(e.target,'usernhw_search_switcher') == null ){
-  document.querySelector('#searchhelpmework').style.display = "none"}
+  document.querySelector('#searchhelpmework').style.display = "none"
+  document.querySelector('.profile_div').style.display = "block"
+}
 })

@@ -1,10 +1,11 @@
 #Login_Div {
     position: relative;
-    height: 60vh;
+    height: 400px;
     width: 300px;
     background: rgb(20 25 34 / 88%);
     top: 100px;
-    max-height: 400px;
+    max-height: 450px;
+    min-height: 350px;
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
@@ -32,7 +33,9 @@ input {
     background: #8787cb;
     display: grid;
     justify-content: center;
+    justify-items: center;
     align-content: center;
+    align-items: center;
     font-size: larger;
     margin-top: 15px;
     cursor: pointer;
