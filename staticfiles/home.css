@@ -163,7 +163,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -324,6 +325,8 @@ img.homework_img {
   justify-content: flex-start;
   gap: 5px;
   padding: 3px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .preview_img {

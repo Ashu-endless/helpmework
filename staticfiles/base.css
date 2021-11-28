@@ -27,17 +27,22 @@ button {
 }
 
 .homework_container {
-  height: 60vh;
+  height: 75vh;
   width: 50vw;
   border-radius: 5px;
   background-color: #0d1014;
   margin-bottom: 10px;
   position: relative;
   max-width: 350px;
-  left: 35%;
   font-family: system-ui;
   border: 1px white solid;
+  min-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 400px;
+  max-height: 450px;
 }
+
 .view_profile_div{
   position: absolute;
   top: 50px;

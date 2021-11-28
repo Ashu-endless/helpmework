@@ -78,11 +78,10 @@ def user_login(request):
         user = authenticate(username=user_name,password=user_password)
         if user is not None:
             login(request,user)
-            return redirect('home')
-
-
+            return JsonResponse({'success':'True'})
+          
         else:
-            return redirect('trial')
+            return JsonResponse({'success':'wrong credentials'})
         
 def user_search(request):
 

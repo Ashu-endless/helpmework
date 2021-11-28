@@ -78,7 +78,7 @@ searchhelpmework.oninput=(e)=>{
             a.append(description)
             document.querySelector('#HomeworksearchModalDiv').append(a)
             a.classList.add('search_hw_Container');
-            img.src = response.homeworks[i].fields.imgsrcs.split(',')[0].replace(/['"]+/g, '').replace('[https:','https:')
+            img.src = response.homeworks[i].fields.imgsrcs.split(',')[0].replace(/['"]+/g, '').replace('[https:','https:').replace(']','')
             description.innerHTML = response.homeworks[i].fields.description
             console.log(response.homeworks[i].fields.description)
         }}
@@ -308,7 +308,7 @@ for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
 
 for(var el of document.querySelectorAll('.bi-share')){
   el.addEventListener('click',function(){
-    navigator.clipboard.writeText("copyText'''.value")
+    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/${this.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
   })
 }
 
@@ -320,3 +320,13 @@ for(var el of document.querySelectorAll('.bi-share')){
 
   
 // })
+
+
+document.querySelector('#HMWSearchIcon').addEventListener('click',function(){
+  document.querySelector('#searchhelpmework').style.display = "block"
+})
+
+document.body.addEventListener('click',function(e){
+  if(e.target.id != 'searchhelpmework' && e.target.id != 'HMWSearchIcon' ){
+  document.querySelector('#searchhelpmework').style.display = "none"}
+})
