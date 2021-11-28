@@ -24,9 +24,11 @@ input {
     color: white;
     border-radius: 2px;
     padding: 5px;
+    border: 1px white dashed;
 }
 
-#login_btn {
+#login_btn,
+#SignUp_btn {
     background: #8787cb;
     display: grid;
     justify-content: center;

@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="{% static 'home.css' %}">
 {% endblock headload %}
 {% block nav %}
-<nav> <input type="text" name="" id="searchhelpmework" placeholder="search">  <i id="HMWSearchIcon" class="bi bi-search searchicon"></i> <a class="titlemain"  href="{% url 'home' %}">Help me work</a>   <div class="profile_div" ><span class="profile" ></span> <i class="bi bi-caret-down-fill profile_dropdownicon"></i> </div> </nav>
+<nav> <input type="text" name="" id="searchhelpmework" autocomplete="off" placeholder="search">  <i id="HMWSearchIcon" class="bi bi-search searchicon"></i> <a class="titlemain"  href="{% url 'home' %}">Help me work</a>   <div class="profile_div" ><span class="profile" ></span> <i class="bi bi-caret-down-fill profile_dropdownicon"></i> </div> </nav>
 <div id="searchModal" >
     <i class="bi bi-x-square hidemyprnt"></i>
-    <div id="usernhw_search_switcher" > <div class="usernhw_search_switcher_span" ><i class="bi bi-people-fill"></i> User</div> <div class="usernhw_search_switcher_span" > <i class="bi bi-journal-text"></i> Homeworks</div>  </div>
+    <div id="usernhw_search_switcher" > <div class="usernhw_search_switcher_span" ><i class="bi bi-people-fill"></i>imgsrc</div> <div class="usernhw_search_switcher_span" > <i class="bi bi-journal-text"></i> Homeworks</div>  </div>
     <div id="UsersearchModalDiv" class="searchModalDiv"></div>
     <div id="HomeworksearchModalDiv" class="searchModalDiv" ></div>
 </div>
@@ -89,7 +89,7 @@
 
 
 <span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
-<i class="bi bi-share" data-toggle="message" data-target="#1" data-expire="2000" ></i>
+<i class="bi bi-share"  ></i>
 <i class="bi bi-file-earmark-arrow-down"></i>
 
 
@@ -110,6 +110,8 @@
 
 
  {% comment %} ????????!!!!!!!!!!!! {% endcomment %}
+ {% comment %} ????????!!!!!!!!!!!! {% endcomment %}
+ {% comment %} ????????!!!!!!!!!!!! {% endcomment %}
 
  {% for homework in homeworks %}
 
@@ -119,14 +121,32 @@
 <span class="homework_postedby"> {{homework.postedby}}</span>
 <span class="homework_posttime" > {{homework.posttime | date:"d M Y f A"}}</span>
 </div>
+
+
 <i class="bi bi-caret-left-fill img-slide-left"></i>
-<i class="bi bi-caret-right-fill img-slide-right"></i>
-<div class="homework_img_divs">
-{% for voters in homework.imgsrcs %}
-{% if forloop.counter == 1 %}
-<img  src={{ voters }} class="homework_img active_img">
+
+
+{% if homework.imgsrcs|length == 1 %}
+<i class="bi bi-caret-right-fill img-slide-right" style="display:none;"></i>
+
 {% else %}
-<img  src={{ voters }} class="homework_img unactive_img">
+<i class="bi bi-caret-right-fill img-slide-right" ></i>
+{% endif %}
+
+
+
+<div class="homework_img_divs">
+{% comment %} {% if len(homework.imgsrcs) == 1 %}
+"true"
+{% else %}
+{% endif %} {% endcomment %}
+
+{% for imgsrc in homework.imgsrcs %}
+
+{% if forloop.counter == 1 %}
+<img  src={{ imgsrc }} class="homework_img active_img">
+{% else %}
+<img  src={{ imgsrc }} class="homework_img unactive_img">
 {% endif %}
 {% endfor %}
 
@@ -148,8 +168,8 @@
 
 
 <span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
-<i class="bi bi-share" data-toggle="message" data-target="#1" data-expire="2000"></i>
-<i class="bi bi-file-earmark-arrow-down" data-toggle="message" data-target="#2" data-expire="2000"></i>
+<i class="bi bi-share" ></i>
+<i class="bi bi-file-earmark-arrow-down" ></i>
 
  </div>
 
@@ -176,22 +196,9 @@
 
 
 
-<div id="1" class="message fade">
-  share link copied to clipboard
-</div>
-
-<div id="2" class="message fade">
-  Downloading homeworks
-</div>
 
 
-{% comment %} button type="button" data-toggle="message" data-target="#1">
-  Open message
-</button>
 
-<button type="button" data-toggle="message" data-target="#1" data-expire="2000">
-  Open disappearing message
-</button>< {% endcomment %}
 {% endblock content %}
 
 {% block script %}

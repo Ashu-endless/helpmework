@@ -1,4 +1,4 @@
-import { NewArrowBox } from "./arrowbox.js"
+import { getparent, NewArrowBox } from "./arrowbox.js"
 
 
 var searchhelpmework = document.querySelector('#searchhelpmework');
@@ -140,6 +140,11 @@ for ( var el of document.querySelectorAll('.img-slide-left')){
     if(active_img != img_contianer.children[0]){
       active_img.classList.remove('active_img')
       active_img.previousElementSibling.classList.add('active_img')
+      var new_active_img = this.parentNode.querySelector('.active_img')
+      if(new_active_img == img_contianer.children[0]){
+        this.style.display = "none"
+      }
+      this.parentNode.querySelector('.img-slide-right').style.display = "block"
     }
   })
 }
@@ -149,9 +154,16 @@ for ( var el of document.querySelectorAll('.img-slide-right')){
   el.addEventListener('click',function(){
     var img_contianer = this.parentNode.querySelector('.homework_img_divs')
     var active_img = this.parentNode.querySelector('.active_img')
+
     if(active_img != img_contianer.children[img_contianer.childElementCount - 1]){
       active_img.classList.remove('active_img')
       active_img.nextElementSibling.classList.add('active_img')
+      var new_active_img = this.parentNode.querySelector('.active_img')
+
+      if(new_active_img == img_contianer.children[img_contianer.childElementCount - 1]){
+        this.style.display = "none"
+      }
+      this.parentNode.querySelector('.img-slide-left').style.display = "block"
     }
   })
   
@@ -295,6 +307,7 @@ function forceDownload(url, fileName){
 for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
   el.addEventListener('click',function(){
     for( var images of this.parentElement.parentElement.querySelectorAll('img')){
+      $.notify("Downloading homework", "success");
     forceDownload(images.src,'homework.jpg')
       // var link = document.createElement('a');
     // link.href = images.src;
@@ -309,6 +322,7 @@ for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
 for(var el of document.querySelectorAll('.bi-share')){
   el.addEventListener('click',function(){
     navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/${this.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
+    $.notify("Share link copied to clipboard", "success");
   })
 }
 
@@ -322,11 +336,13 @@ for(var el of document.querySelectorAll('.bi-share')){
 // })
 
 
+
+
 document.querySelector('#HMWSearchIcon').addEventListener('click',function(){
   document.querySelector('#searchhelpmework').style.display = "block"
 })
 
 document.body.addEventListener('click',function(e){
-  if(e.target.id != 'searchhelpmework' && e.target.id != 'HMWSearchIcon' ){
+  if(e.target.id != 'searchhelpmework' && e.target.id != 'HMWSearchIcon' && e.target.id != 'HomeworksearchModalDiv' && getparent(e.target,'usernhw_search_switcher') == null ){
   document.querySelector('#searchhelpmework').style.display = "none"}
 })

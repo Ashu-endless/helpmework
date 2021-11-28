@@ -15,13 +15,11 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
-
-document.querySelector('#login_btn').addEventListener('click', function (e) {
+document.querySelector('[name="username"]').addEventListener('input', function (e) {
     e.preventDefault(); 
-    var url = "/login"
+    var url = "/check_ifusername_Available"
     var data = {
         username: this.parentNode.querySelector('[name="username"]').value,
-        password: this.parentNode.querySelector('[name="password"]').value,
         csrfmiddlewaretoken: csrftoken,
     }
     console.log(data)
@@ -31,10 +29,14 @@ document.querySelector('#login_btn').addEventListener('click', function (e) {
         data: data,
     }).done(function (response) {
         console.log(response)
-        if(response.success == "True"){
-        window.location.replace("/");}
+        if(response.available == "true"){
+            document.querySelector('[name="username"]').style.color = "white"
+            document.querySelector('#SignUp_btn').type = "submit" }
         else{
-            $("#login_btn").notify("Wrong username or password", "error");
+            document.querySelector('[name="username"]').style.color = "red"
+            $('[name="username"]').notify("Username already takes", "error")
+            document.querySelector('#SignUp_btn').type = "button"
         }
     })
+    
 })

@@ -94,14 +94,14 @@ body {
   position: absolute;
   right: 5%;
   left: 5%;
-  border: 1px white solid;
+  /* border: 1px white solid; */
   justify-content: space-around;
   height: 40px;
   font-size: larger;
-  font-family: fantasy;
+  font-family: monospace;
   align-items: center;
   top: 50px;
-  background: #5f8fd3;
+  background: #0d1117;
   border-radius: 5px;
   grid-template-columns: 50% 50%;
   overflow: hidden;
@@ -128,7 +128,7 @@ body {
   left: 0;
   right: 0;
   color: white;
-  border: 1px white solid;
+  border: 1px white dashed;
   display: block;
   padding: 10px;
   font-family: system-ui;
@@ -351,19 +351,23 @@ img.homework_img {
   background: none;
 }
 
-#NSUF,
-#NSHF {
-  position: relative;
+#NSUF, #NSHF {
+  position: absolute;
   left: 0;
   right: 0;
   color: #dcfbfd;
-  border: 2px red solid;
+  border: 2px red dashed;
   display: block;
   padding: 10px;
   font-family: system-ui;
   text-decoration: none;
   max-height: 50px;
-  font-family: fantasy;
+  font-family: monospace;
+  /* width: 100%; */
+  font-size: large;
+  margin: 10px;
+  left: 0;
+  right: 0;
 }
 
 .hide{
@@ -422,6 +426,7 @@ img.homework_img {
     padding: 5px;
     border-radius: 2px;
     font-family: monospace;
+    display: none;
 }
 
 

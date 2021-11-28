@@ -27,9 +27,9 @@
 <input type="text" name="username" id="">
 
 <div>Create a Password</div>
-<input type="text" name="password" id="">
+<input type="password" name="password" id="">
 
-<button type="submit" id="login_btn">Sign Up</button>
+<button type="button" id="SignUp_btn">Sign Up</button>
 
 <div class="dnt" >Already have an account?</div>
 <a href="{% url 'login_page' %}" id="signup">Login</a>
@@ -52,3 +52,7 @@
 
 <p>Already have an account? <a href="{% url 'login_page' %}">login</a></p> {% endcomment %}
 {% endblock content %}
+{% block script %}
+<script src="{% static 'sign_up.js' %}" type="module"></script>
+
+{% endblock script %}

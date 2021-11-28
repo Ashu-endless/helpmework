@@ -14,6 +14,7 @@ urlpatterns = [
     path('share',views.sharehomework,name='share'),
     path('view_profile/<str:user_name>/',views.view_profile,name='view_profile'),
     path('upvoted_a_homework',views.upvoted_a_homework,name='upvoted_a_homework'),
-    path('view_homework/<int:hw_id>/',views.view_homework,name='view_homework'),
+    path('view_homework/<str:hw_id>/',views.view_homework,name='view_homework'),
+    path('check_ifusername_Available',views.CheckUsernameAvailibity,name='CheckUsernameAvailibity'),
 
 ]

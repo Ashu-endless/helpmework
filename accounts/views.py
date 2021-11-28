@@ -23,9 +23,10 @@ def homepage(request):
     data = request.user.username
     homeworks = helpmework.objects.all()
     users = User.objects.all()
-    print(homeworks)
+    #print(homeworks)
     context = {'data':data}
-    print(context['data'])
+    #print(context['data'])
+
     #print(helpmework.objects.get(postedby="1"))
     #raj = helpmework.objects.get(postedby="1")
     #print(raj.upvoted_by.all())
@@ -164,3 +165,16 @@ def update_profile(request):
     mainProfile = MainProfile.objects.get(user=request.user.id)
     print(mainProfile)
     
+def CheckUsernameAvailibity(request):
+    if request.method == 'POST':
+        username_ = request.POST.get('username')
+
+        try:
+            user = User.objects.get(username=username_)
+            return JsonResponse({'available':'false'})
+        except:
+            return JsonResponse({'available':'true'})
+        # if user:
+        #     return JsonResponse({'available':'true'})
+        # else :
+        #     return JsonResponse({'available':'false'})
