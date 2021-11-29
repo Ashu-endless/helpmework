@@ -87,9 +87,12 @@ searchhelpmework.oninput=(e)=>{
     }
 
 
-
+try{
 NewArrowBox({for:document.querySelector('.profile_div'),data: document.querySelector('#pofile_arrowbox'),
-event: 'click'})
+event: 'click'})}
+catch(Err){
+
+}
 
 document.querySelector('#about_input').addEventListener('input',function(){
   document.querySelector('[name=homework_about]').value = this.innerHTML
@@ -99,6 +102,10 @@ var upvote_btn = document.querySelectorAll('.upvote_btn');
 console.log(upvote_btn)
 for ( var el of upvote_btn){
 el.addEventListener('click',function(e){
+  if(document.querySelector('#share_homework') == null){
+    $.notify("Login to like or share a homework", "error");
+  }else{
+
     e.preventDefault(); // prevent the page from reload
     var url = "/upvoted_a_homework"
     var upvoteBtn = this
@@ -126,11 +133,12 @@ el.addEventListener('click',function(e){
           upvoteBtn.classList.add('bi-hand-thumbs-up-fill')
           upvoteBtn.classList.remove('bi-hand-thumbs-up')
 
-        }
+            }
       }
-      
-      })
-})}
+    
+        })
+}})
+}
 
 for ( var el of document.querySelectorAll('.img-slide-left')){
   
@@ -168,10 +176,13 @@ for ( var el of document.querySelectorAll('.img-slide-right')){
   })
   
 }
-
+try{
 document.querySelector('#share_homework').addEventListener('click',function(){
   document.querySelector('#shareModal').style.display = "block"
-})
+})}
+catch(Err){
+
+}
 
 const NSHF = document.querySelector('#NSHF')
 const NSUF = document.querySelector('#NSUF')
@@ -278,12 +289,16 @@ document.querySelector('#previewing_img').style.backgroundImage = `url(${imgtag.
 document.querySelector('#usernhw_search_switcher').children[0].addEventListener('click',function(){
 document.querySelector('#UsersearchModalDiv').style.display  = "grid"
 document.querySelector('#HomeworksearchModalDiv').style.display  = "none"
+this.style.color = "blueviolet"
+this.nextElementSibling.style.color = "white"
 })
 
 
 document.querySelector('#usernhw_search_switcher').children[1].addEventListener('click',function(){
 document.querySelector('#HomeworksearchModalDiv').style.display  = "flex"
 document.querySelector('#UsersearchModalDiv').style.display  = "none"
+this.style.color = "blueviolet"
+this.previousElementSibling.style.color = "white"
 })
 
 
@@ -340,12 +355,18 @@ for(var el of document.querySelectorAll('.bi-share')){
 
 document.querySelector('#HMWSearchIcon').addEventListener('click',function(){
   document.querySelector('#searchhelpmework').style.display = "block"
-  document.querySelector('.profile_div').style.display = "none"
+  try{
+  document.querySelector('.profile_div').style.display = "none"}
+  catch(err){}
 })
 
 document.body.addEventListener('click',function(e){
   if(e.target.id != 'searchhelpmework' && e.target.id != 'HMWSearchIcon' && e.target.id != 'HomeworksearchModalDiv' && getparent(e.target,'usernhw_search_switcher') == null ){
   document.querySelector('#searchhelpmework').style.display = "none"
-  document.querySelector('.profile_div').style.display = "block"
+  try{
+  document.querySelector('.profile_div').style.display = "grid"}
+  catch(Err){
+
+  }
 }
 })

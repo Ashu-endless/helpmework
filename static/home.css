@@ -460,3 +460,15 @@ img.homework_img {
 
 }
 
+#ananymous_user {
+  position: absolute;
+  right: 10px;
+  background: forestgreen;
+  top: 10%;
+  bottom: 10%;
+  display: grid;
+  align-items: center;
+  border-radius: 2px;
+  font-family: monospace;
+  padding: 0px 5px;
+}

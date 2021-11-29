@@ -31,11 +31,6 @@ input {
 #login_btn,
 #SignUp_btn {
     background: #8787cb;
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
     font-size: larger;
     margin-top: 15px;
     cursor: pointer;

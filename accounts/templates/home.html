@@ -6,13 +6,20 @@
 <link rel="stylesheet" href="{% static 'home.css' %}">
 {% endblock headload %}
 {% block nav %}
-<nav> <input type="text" name="" id="searchhelpmework" autocomplete="off" placeholder="search">  <i id="HMWSearchIcon" class="bi bi-search searchicon"></i> <a class="titlemain"  href="{% url 'home' %}">Help me work</a>   <div class="profile_div" ><span class="profile" ></span> <i class="bi bi-caret-down-fill profile_dropdownicon"></i> </div> </nav>
+<nav> <input type="text" name="" id="searchhelpmework" autocomplete="off" placeholder="search">  <i id="HMWSearchIcon" class="bi bi-search searchicon"></i> <a class="titlemain"  href="{% url 'home' %}">Help me work</a> 
+{% if request.user.is_authenticated %}
+<div class="profile_div" ><span class="profile" ></span> <i class="bi bi-caret-down-fill profile_dropdownicon"></i> </div>
+{% else %}
+<a id="ananymous_user" href="{% url 'home' %}" >login</a>
+{% endif %}   </nav>
+
 <div id="searchModal" >
     <i class="bi bi-x-square hidemyprnt"></i>
-    <div id="usernhw_search_switcher" > <div class="usernhw_search_switcher_span" ><i class="bi bi-people-fill"></i>Users</div> <div class="usernhw_search_switcher_span" > <i class="bi bi-journal-text"></i> Homeworks</div>  </div>
+    <div id="usernhw_search_switcher" > <div class="usernhw_search_switcher_span" ><i class="bi bi-people-fill"></i>Users</div> <div class="usernhw_search_switcher_span" style="color:blueviolet;" > <i class="bi bi-journal-text"></i> Homeworks</div>  </div>
     <div id="UsersearchModalDiv" class="searchModalDiv"></div>
     <div id="HomeworksearchModalDiv" class="searchModalDiv" ></div>
 </div>
+{% if request.user.is_authenticated %}
 <div id="pofile_arrowbox" >
 <a href="{% url 'view_profile' request.user %}"  class="arrowboxbtn">
   {{request.user}}
@@ -25,7 +32,8 @@
 <button type="submit" class="logoutbtn"> logout</button></form>
 
 </div>
-
+{% else %}
+{% endif %}
 
 <div id="shareModal" >
     <i class="bi bi-x-square hidemyprnt"></i>
