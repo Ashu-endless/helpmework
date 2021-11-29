@@ -73,11 +73,20 @@
 <span class="homework_posttime" > {{homework.posttime | date:"d M Y f A"}}</span>
 </div>
 <i class="bi bi-caret-left-fill img-slide-left"></i>
-<i class="bi bi-caret-right-fill img-slide-right"></i>
-<div class="homework_img_divs">
-{% for voters in homework.imgsrcs %}
+{% if homework.imgsrcs|length == 1 %}
+<i class="bi bi-caret-right-fill img-slide-right" style="display:none;"></i>
 
-<img  src={{ voters }} class="homework_img {% cycle 'active_img' 'unactive_img' 'unactive_img' 'unactive_img' 'unactive_img' 'unactive_img' 'unactive_img' %}">
+{% else %}
+<i class="bi bi-caret-right-fill img-slide-right" ></i>
+{% endif %}
+<div class="homework_img_divs">
+{% for imgsrc in homework.imgsrcs %}
+
+{% if forloop.counter == 1 %}
+<img  src={{ imgsrc }} class="homework_img active_img">
+{% else %}
+<img  src={{ imgsrc }} class="homework_img unactive_img">
+{% endif %}
 {% endfor %}
 </div>
 {% comment %} |slice:"1:-1" {% endcomment %}
