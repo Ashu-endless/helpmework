@@ -8,10 +8,16 @@ body {
 
 a {
   display: block;
+  text-decoration: none;
+  color:inherit;
 }
 
 button {
   width: 100%;
+  border: none;
+  color: inherit;
+  /* font-size: large; */
+  font-family: inherit;
 }
 
 
@@ -42,7 +48,6 @@ button {
   min-height: 400px;
   max-height: 450px;
 }
-
 .view_profile_div{
   position: absolute;
   top: 50px;
@@ -93,7 +98,7 @@ span.homework_description {
 span.homework_posttime {
     position: absolute;
     right: 2%;
-    font-size: small;
+    font-size: xx-small;
     width: 50%;
     text-align: right;
 }
@@ -149,6 +154,7 @@ span.homework_posttime {
     left: 0px;
     z-index: 1;
     font-size: x-large;
+    display:none;
 }
 .bi:hover{
 color: blueviolet;
@@ -167,4 +173,14 @@ i.bi.upvote_btn.bi-hand-thumbs-up-fill {
 
 .upvote_btn:hover {
   color: grey;
+}
+
+.titlemain {
+  font-size: xx-large;
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-family: amatic sc;
+  margin-left: auto;
+  margin-right: auto;
 }

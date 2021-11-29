@@ -1,4 +1,4 @@
-import { NewArrowBox } from "./arrowbox.js"
+import { getparent, NewArrowBox } from "./arrowbox.js"
 
 
 var searchhelpmework = document.querySelector('#searchhelpmework');
@@ -78,7 +78,7 @@ searchhelpmework.oninput=(e)=>{
             a.append(description)
             document.querySelector('#HomeworksearchModalDiv').append(a)
             a.classList.add('search_hw_Container');
-            img.src = response.homeworks[i].fields.imgsrcs.split(',')[0].replace(/['"]+/g, '').replace('[https:','https:')
+            img.src = response.homeworks[i].fields.imgsrcs.split(',')[0].replace(/['"]+/g, '').replace('[https:','https:').replace(']','')
             description.innerHTML = response.homeworks[i].fields.description
             console.log(response.homeworks[i].fields.description)
         }}
@@ -87,9 +87,12 @@ searchhelpmework.oninput=(e)=>{
     }
 
 
-
+try{
 NewArrowBox({for:document.querySelector('.profile_div'),data: document.querySelector('#pofile_arrowbox'),
-event: 'click'})
+event: 'click'})}
+catch(Err){
+
+}
 
 document.querySelector('#about_input').addEventListener('input',function(){
   document.querySelector('[name=homework_about]').value = this.innerHTML
@@ -99,6 +102,10 @@ var upvote_btn = document.querySelectorAll('.upvote_btn');
 console.log(upvote_btn)
 for ( var el of upvote_btn){
 el.addEventListener('click',function(e){
+  if(document.querySelector('#share_homework') == null){
+    $.notify("Login to like or share a homework", "error");
+  }else{
+
     e.preventDefault(); // prevent the page from reload
     var url = "/upvoted_a_homework"
     var upvoteBtn = this
@@ -126,11 +133,12 @@ el.addEventListener('click',function(e){
           upvoteBtn.classList.add('bi-hand-thumbs-up-fill')
           upvoteBtn.classList.remove('bi-hand-thumbs-up')
 
-        }
+            }
       }
-      
-      })
-})}
+    
+        })
+}})
+}
 
 for ( var el of document.querySelectorAll('.img-slide-left')){
   
@@ -140,6 +148,11 @@ for ( var el of document.querySelectorAll('.img-slide-left')){
     if(active_img != img_contianer.children[0]){
       active_img.classList.remove('active_img')
       active_img.previousElementSibling.classList.add('active_img')
+      var new_active_img = this.parentNode.querySelector('.active_img')
+      if(new_active_img == img_contianer.children[0]){
+        this.style.display = "none"
+      }
+      this.parentNode.querySelector('.img-slide-right').style.display = "block"
     }
   })
 }
@@ -149,17 +162,27 @@ for ( var el of document.querySelectorAll('.img-slide-right')){
   el.addEventListener('click',function(){
     var img_contianer = this.parentNode.querySelector('.homework_img_divs')
     var active_img = this.parentNode.querySelector('.active_img')
+
     if(active_img != img_contianer.children[img_contianer.childElementCount - 1]){
       active_img.classList.remove('active_img')
       active_img.nextElementSibling.classList.add('active_img')
+      var new_active_img = this.parentNode.querySelector('.active_img')
+
+      if(new_active_img == img_contianer.children[img_contianer.childElementCount - 1]){
+        this.style.display = "none"
+      }
+      this.parentNode.querySelector('.img-slide-left').style.display = "block"
     }
   })
   
 }
-
+try{
 document.querySelector('#share_homework').addEventListener('click',function(){
   document.querySelector('#shareModal').style.display = "block"
-})
+})}
+catch(Err){
+
+}
 
 const NSHF = document.querySelector('#NSHF')
 const NSUF = document.querySelector('#NSUF')
@@ -266,12 +289,16 @@ document.querySelector('#previewing_img').style.backgroundImage = `url(${imgtag.
 document.querySelector('#usernhw_search_switcher').children[0].addEventListener('click',function(){
 document.querySelector('#UsersearchModalDiv').style.display  = "grid"
 document.querySelector('#HomeworksearchModalDiv').style.display  = "none"
+this.style.color = "blueviolet"
+this.nextElementSibling.style.color = "white"
 })
 
 
 document.querySelector('#usernhw_search_switcher').children[1].addEventListener('click',function(){
 document.querySelector('#HomeworksearchModalDiv').style.display  = "flex"
 document.querySelector('#UsersearchModalDiv').style.display  = "none"
+this.style.color = "blueviolet"
+this.previousElementSibling.style.color = "white"
 })
 
 
@@ -295,6 +322,7 @@ function forceDownload(url, fileName){
 for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
   el.addEventListener('click',function(){
     for( var images of this.parentElement.parentElement.querySelectorAll('img')){
+      $.notify("Downloading homework", "success");
     forceDownload(images.src,'homework.jpg')
       // var link = document.createElement('a');
     // link.href = images.src;
@@ -308,7 +336,8 @@ for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
 
 for(var el of document.querySelectorAll('.bi-share')){
   el.addEventListener('click',function(){
-    navigator.clipboard.writeText("copyText'''.value")
+    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/${this.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
+    $.notify("Share link copied to clipboard", "success");
   })
 }
 
@@ -320,3 +349,24 @@ for(var el of document.querySelectorAll('.bi-share')){
 
   
 // })
+
+
+
+
+document.querySelector('#HMWSearchIcon').addEventListener('click',function(){
+  document.querySelector('#searchhelpmework').style.display = "block"
+  try{
+  document.querySelector('.profile_div').style.display = "none"}
+  catch(err){}
+})
+
+document.body.addEventListener('click',function(e){
+  if(e.target.id != 'searchhelpmework' && e.target.id != 'HMWSearchIcon' && e.target.id != 'HomeworksearchModalDiv' && getparent(e.target,'usernhw_search_switcher') == null ){
+  document.querySelector('#searchhelpmework').style.display = "none"
+  try{
+  document.querySelector('.profile_div').style.display = "grid"}
+  catch(Err){
+
+  }
+}
+})

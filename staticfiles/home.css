@@ -30,20 +30,12 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  left: 60%;
+  width:60px;
   height: 100%;
   display: grid;
   align-items: center;
 }
 
-.titlemain {
-  font-size: xx-large;
-  position: absolute;
-  left: 40%;
-  text-decoration: none;
-  color: white;
-  font-family: amatic sc;
-}
 
 .searchicon {
   position: absolute;
@@ -102,14 +94,14 @@ body {
   position: absolute;
   right: 5%;
   left: 5%;
-  border: 1px white solid;
+  /* border: 1px white solid; */
   justify-content: space-around;
   height: 40px;
   font-size: larger;
-  font-family: fantasy;
+  font-family: monospace;
   align-items: center;
-  top: 60px;
-  background: #5f8fd3;
+  top: 50px;
+  background: #0d1117;
   border-radius: 5px;
   grid-template-columns: 50% 50%;
   overflow: hidden;
@@ -117,7 +109,7 @@ body {
 
 .searchModalDiv {
     position: absolute;
-    top: 100px;
+    top: 90px;
     display: grid;
     right: 5%;
     left: 5%;
@@ -136,7 +128,7 @@ body {
   left: 0;
   right: 0;
   color: white;
-  border: 1px white solid;
+  border: 1px white dashed;
   display: block;
   padding: 10px;
   font-family: system-ui;
@@ -148,7 +140,7 @@ body {
   position: fixed;
   top: 40px;
   bottom: 0%;
-  overflow-y: scroll;
+  overflow-y: auto;
   right: 0;
   padding-top: 25px;
   left: 0;
@@ -163,8 +155,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -204,7 +196,7 @@ body {
   position: absolute;
   right: 5%;
   top: 0px;
-  color: wheat;
+  color: rgb(230, 63, 174);
   font-size: xx-large;
 }
 
@@ -216,7 +208,7 @@ img.homework_img {
 
 .shareModalDiv {
   position: absolute;
-  top: 60px;
+  top: 50px;
   display: grid;
   right: 5%;
   left: 5%;
@@ -234,15 +226,12 @@ img.homework_img {
   opacity: 0;
 }
 
-.upload_image_div{
+.upload_image_div {
   height: 100px;
   width: 100px;
   background: black;
   border: 1px dashed white;
-  position: absolute;
-  top: 20%;
-  left: 45%;
-  right: 50%;
+  position: relative;
   display: grid;
   justify-content: center;
   justify-items: center;
@@ -252,21 +241,25 @@ img.homework_img {
   align-content: space-around;
   text-align: center;
   border-radius: 5px;
+  margin-left: auto;
+  margin: auto;
+  margin-top: 25%;
+
 }
 
 #Sharebtn {
   position: absolute;
-  bottom: 0;
-  height: 8%;
+  bottom: 1%;
+  height: 7%;
   background: #4c4abd;
-  left: 0;
-  right: 0;
-  font-family: FANTASY;
+  font-family: monospace;
   display: grid;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: none;
+  color: whitesmoke;
 }
 
 
@@ -274,7 +267,7 @@ img.homework_img {
   position: absolute;
   bottom: 26%;
   font-family: system-ui;
-  padding: 5px 15px 5px 15px;
+  padding: 2px 5%;
   width: fit-content;
   background: #4c4abd;
   border-radius: 2px;
@@ -283,6 +276,7 @@ img.homework_img {
   left: 5px;
 }
 #about_input {
+  font-family: monospace;
   position: absolute;
   top: 75%;
   right: 5px;
@@ -325,8 +319,8 @@ img.homework_img {
   justify-content: flex-start;
   gap: 5px;
   padding: 3px;
-  overflow-x: auto;
   overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .preview_img {
@@ -357,19 +351,23 @@ img.homework_img {
   background: none;
 }
 
-#NSUF,
-#NSHF {
-  position: relative;
+#NSUF, #NSHF {
+  position: absolute;
   left: 0;
   right: 0;
   color: #dcfbfd;
-  border: 2px red solid;
+  border: 2px red dashed;
   display: block;
   padding: 10px;
   font-family: system-ui;
   text-decoration: none;
   max-height: 50px;
-  font-family: fantasy;
+  font-family: monospace;
+  /* width: 100%; */
+  font-size: large;
+  margin: 10px;
+  left: 0;
+  right: 0;
 }
 
 .hide{
@@ -401,11 +399,9 @@ img.homework_img {
 
 
 .search_hw_img {
-  height: 79%;
-  position: absolute !important;
-  left: 5px;
-  right: 5px;
-  display: block;
+  height: 80%;
+  width: 100%;
+ 
 }
 
 
@@ -418,6 +414,8 @@ img.homework_img {
   padding-left: 5px;
   left: 0;
   right: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 #save_profile_btn,
 #edit_profile_btn{
@@ -428,4 +426,49 @@ img.homework_img {
     padding: 5px;
     border-radius: 2px;
     font-family: monospace;
+    display: none;
+}
+
+
+@media only screen and (max-width: 400px) {
+  #searchhelpmework{
+    display: none;
+    width: 60vw;
+  }
+  .view_profile_pic {
+    height: 100px !important;
+    width: 100px !important;
+}
+.hidemyprnt {
+  position: fixed;
+  right: 10%;
+  top: 0px;
+  color: rgb(255 228 246);
+  font-size: xx-large;
+}
+.searchModalDiv {
+  
+  top: 50px;}
+ 
+
+
+#usernhw_search_switcher {
+  top: 10px;
+  
+}
+
+
+}
+
+#ananymous_user {
+  position: absolute;
+  right: 10px;
+  background: forestgreen;
+  top: 10%;
+  bottom: 10%;
+  display: grid;
+  align-items: center;
+  border-radius: 2px;
+  font-family: monospace;
+  padding: 0px 5px;
 }
