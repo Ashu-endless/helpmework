@@ -121,6 +121,7 @@ body {
     background-repeat: round;
     background-size: contain;
     align-content: baseline;
+    overflow-y: auto;
 }
 
 .a_result {
