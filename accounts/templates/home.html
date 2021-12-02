@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'home.css' %}">
 {% endblock headload %}
 {% block nav %}
-<nav> <input type="text" name="" id="searchhelpmework" autocomplete="off" placeholder="search">  <i id="HMWSearchIcon" class="bi bi-search searchicon"></i> <a class="titlemain"  href="{% url 'home' %}">Help me work</a> 
+<nav> <a href="{% url 'home' %}" class="home_icon" > <i class="bi bi-house-fill" ></i></a> <input type="text" name="" id="searchhelpmework" autocomplete="off" placeholder="search">  <i id="HMWSearchIcon" class="bi bi-search searchicon"></i> <a class="titlemain"  href="{% url 'home' %}">Help me work</a> 
 {% if request.user.is_authenticated %}
 <div class="profile_div" ><span class="profile" ></span> <i class="bi bi-caret-down-fill profile_dropdownicon"></i> </div>
 {% else %}
@@ -69,7 +69,7 @@
 <div class="homework_container" >
 <div class="postedby_profile" >
 <span class="postedby_profilepic profile" ></span>
-<span class="homework_postedby"> {{homework.postedby}}</span>
+<a href="{% url 'view_profile' homework.postedby %}" class="homework_postedby"> {{homework.postedby}}</a>
 <span class="homework_posttime" > {{homework.posttime | date:"d M Y f A"}}</span>
 </div>
 <i class="bi bi-caret-left-fill img-slide-left"></i>
@@ -98,9 +98,9 @@
 
 {% if request.user in homework.upvoted_by.all %} 
 
-<i class="bi bi-hand-thumbs-up-fill upvote_btn"></i>
+<i class="bi bi-star-fill upvote_btn"></i>
 {% else %}
-<i class="bi bi-hand-thumbs-up upvote_btn" ></i>
+<i class="bi bi-star upvote_btn" ></i>
 {% endif %} 
 
 
@@ -119,7 +119,7 @@
 {{voters}}
 {% endfor %}
 </div>
-<span class="homework_no"> {{homework.pk}}</span>
+<span class="homework_no">{{homework.pk}}</span>
 
 </div>
 {% else %}
@@ -135,7 +135,7 @@
 <div class="homework_container" >
 <div class="postedby_profile" >
 <span class="postedby_profilepic profile" ></span>
-<span class="homework_postedby"> {{homework.postedby}}</span>
+<a class="homework_postedby" href="{% url 'view_profile' homework.postedby %}" > {{homework.postedby}}</a>
 <span class="homework_posttime" > {{homework.posttime | date:"d M Y f A"}}</span>
 </div>
 
@@ -177,9 +177,9 @@
 
 {% if request.user in homework.upvoted_by.all %} 
 
-<i class="bi bi-hand-thumbs-up-fill upvote_btn"></i>
+<i class="bi bi-star-fill upvote_btn"></i>
 {% else %}
-<i class="bi bi-hand-thumbs-up upvote_btn" ></i>
+<i class="bi bi-star upvote_btn" ></i>
 {% endif %} 
 
 
@@ -197,7 +197,7 @@
 {{voters}}
 {% endfor %}
 </div>
-<span class="homework_no"> {{homework.pk}}</span>
+<span class="homework_no">{{homework.pk}}</span>
 
 </div>
 {% comment %} Container  {% endcomment %}

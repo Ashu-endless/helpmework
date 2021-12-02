@@ -22,7 +22,7 @@ body {
   height: 30px;
   width: 30px;
   position: absolute;
-  right: 20px;
+  right: 5px;
   background-repeat: round;
   background-image: url(https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png);
 }
@@ -39,7 +39,7 @@ body {
 
 .searchicon {
   position: absolute;
-  left: 6%;
+  left: 9%;
   font-size: larger;
   z-index: 1;
 }
@@ -47,13 +47,14 @@ body {
 .profile_dropdownicon {
   position: absolute;
   right: 0;
+  display: none;
 }
 #searchhelpmework {
   width: 150px;
   background: #0d1117;
   border: none;
   position: absolute;
-  left: 5%;
+  left: 8%;
   top: 5px;
   bottom: 5px;
   border-radius: 5px;
@@ -472,4 +473,11 @@ img.homework_img {
   border-radius: 2px;
   font-family: monospace;
   padding: 0px 5px;
+}
+
+.home_icon{
+  position: absolute;
+  left: 2px;
+  font-size: x-large;
+  color: cadetblue;
 }

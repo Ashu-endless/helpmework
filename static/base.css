@@ -71,7 +71,7 @@ button {
   right: 0;
   height: 30%;
 }
-span.homework_postedby {
+.homework_postedby {
     position: absolute;
     width: 50%;
     left: 55px;
@@ -184,3 +184,23 @@ i.bi.upvote_btn.bi-hand-thumbs-up-fill {
   margin-left: auto;
   margin-right: auto;
 }
+
+
+.stars_count{
+  position: absolute;
+  top: 15px;
+  right: 5%;
+  font-size: x-large;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 5px;
+  align-content: center;
+  /* height: 50px; */
+  /* align-items: stretch; */
+  color: #5294e2;
+}
+
+i.bi.bi-star-fill {
+  color: #3f51b5;
+}
+

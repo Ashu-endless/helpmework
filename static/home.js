@@ -124,14 +124,14 @@ el.addEventListener('click',function(e){
       console.log(response)
       if(response.success == 'true'){
         
-        if(upvoteBtn.classList.contains('bi-hand-thumbs-up-fill')){
-          upvoteBtn.classList.remove('bi-hand-thumbs-up-fill')
-          upvoteBtn.classList.add('bi-hand-thumbs-up')
+        if(upvoteBtn.classList.contains('bi-star-fill')){
+          upvoteBtn.classList.remove('bi-star-fill')
+          upvoteBtn.classList.add('bi-star')
           upv_count.innerHTML = parseInt(upv_count.innerHTML) - 1
         }else{
           upv_count.innerHTML = parseInt(upv_count.innerHTML) + 1
-          upvoteBtn.classList.add('bi-hand-thumbs-up-fill')
-          upvoteBtn.classList.remove('bi-hand-thumbs-up')
+          upvoteBtn.classList.add('bi-star-fill')
+          upvoteBtn.classList.remove('bi-star')
 
             }
       }
@@ -336,7 +336,7 @@ for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
 
 for(var el of document.querySelectorAll('.bi-share')){
   el.addEventListener('click',function(){
-    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/${this.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
+    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/%20${this.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
     $.notify("Share link copied to clipboard", "success");
   })
 }

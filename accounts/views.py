@@ -118,10 +118,20 @@ def view_profile(request,user_name):
     except:
         MainProfiles = MainProfile(user= User.objects.get(username=user_name),bio="")
         MainProfiles.save()
+    user_homeworks = serializers.serialize("json", helpmework.objects.filter(postedby=User.objects.get(username=user_name)))
+    user_homeworks = json.loads(user_homeworks)
     #print(json.loads(MainProfiles))
-    print(MainProfiles.bio)
+    #print(MainProfiles.bio)
+    stars = 0
+    ##print(user_homeworks)
+    for user_homework in user_homeworks:
+        stars += len(user_homework['fields']['upvoted_by'])
+        #for i in user_homework:
+            #print("-------",i)
+        #break
+    #print(user_homeworks)
     #MainProfiles = serializers.serialize("json",MainProfiles)
-    return render(request, "view_profile.html",{'user':user_name,'mainprofiles':MainProfiles})
+    return render(request, "view_profile.html",{'user':user_name,'mainprofiles':MainProfiles,'userhomeworks': user_homeworks,'stars':stars})
 
 
 def upvoted_a_homework(request):
