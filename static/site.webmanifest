@@ -11,5 +11,5 @@
   ],
   "name": "Help me work",
   "short_name": "HMW",
-  "start_url": "home"
+  "start_url": "https://helpmework.herokuapp.com/"
 }
