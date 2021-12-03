@@ -1,0 +1,15 @@
+{
+  "background_color": "purple",
+  "description": "share and recieve homeworks",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/djwe9njg4/image/upload/v1638547408/favicon/android-chrome-192x192_guvebm.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "Help me work",
+  "short_name": "HMW",
+  "start_url": "home"
+}
