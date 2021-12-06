@@ -1,0 +1,107 @@
+{% extends "home.html" %}
+{% load static %}
+
+
+
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'pending_works.css' %}">
+
+
+<div class="pending_works_p">
+    You have {{count}} pending works
+</div>
+<div id="pending_homeworks_container" >{% for homework in homeworks %}
+    <div class="homework_container" >
+<div class="postedby_profile" >
+<span class="postedby_profilepic profile" ></span>
+<a class="homework_postedby" href="{% url 'view_profile' homework.postedby %}" > {{homework.postedby}}</a>
+<span class="homework_posttime" > {{homework.posttime | date:"d M Y f A"}}</span>
+</div>
+
+
+<i class="bi bi-caret-left-fill img-slide-left"></i>
+
+
+{% if homework.imgsrcs|length == 1 %}
+<i class="bi bi-caret-right-fill img-slide-right" style="display:none;"></i>
+
+{% else %}
+<i class="bi bi-caret-right-fill img-slide-right" ></i>
+{% endif %}
+
+
+
+<div class="homework_img_divs">
+{% comment %} {% if len(homework.imgsrcs) == 1 %}
+"true"
+{% else %}
+{% endif %} {% endcomment %}
+
+{% for imgsrc in homework.imgsrcs %}
+
+{% if forloop.counter == 1 %}
+<img  src={{ imgsrc }} class="homework_img active_img">
+{% else %}
+<img  src={{ imgsrc }} class="homework_img unactive_img">
+{% endif %}
+{% endfor %}
+
+</div>
+{% comment %} |slice:"1:-1" {% endcomment %}
+
+<span class="homework_description" > {{homework.description}}</span>
+
+
+<div class="homework_interaction_div">
+
+{% if request.user in homework.upvoted_by.all %} 
+<div  class="interaction_div_stars" >
+<i class="bi bi-star-fill upvote_btn"></i>
+{% else %}
+<i class="bi bi-star upvote_btn" ></i>
+{% endif %} 
+
+
+
+<span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
+</div>
+<div class="interaction_div_btns" >
+<i class="bi bi-share"  ></i>
+{% if homework.pk in userprofile.pending_works %}
+<i class="bi bi-file-earmark-minus pending_works_change_icon"></i>
+{% else %}
+<i class="bi bi-file-earmark-plus pending_works_change_icon"></i>
+{% endif %}
+
+<i class="bi bi-file-earmark-arrow-down"></i>
+{% if request.user == homework.postedby %}
+<i class="bi bi-trash-fill"></i>
+{% else %}
+{% endif %}
+
+</div>
+ </div>
+
+
+
+<div style="display:none;" >
+{% for voters in homework.upvoted_by.all %}
+{{voters}}
+{% endfor %}
+</div>
+<span class="homework_no">{{homework.pk}}</span>
+
+</div>
+{% comment %} Container  {% endcomment %}
+
+{% endfor %}
+
+
+
+</div>
+ 
+
+
+{% endblock content %}

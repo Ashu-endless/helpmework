@@ -144,7 +144,7 @@ body {
   bottom: 0%;
   overflow-y: auto;
   right: 0;
-  padding-top: 25px;
+  padding-top: 40px;
   left: 0;
   /* padding-bottom: 25px; */
 }
@@ -183,7 +183,8 @@ body {
   z-index: 1;
   background: rgb(0 0 0 / 68%);
 }
-#shareModal {
+
+.blur_bg {
   display: none;
   position: fixed;
   top: 40px;
@@ -480,4 +481,23 @@ img.homework_img {
   left: 2px;
   font-size: x-large;
   color: cadetblue;
+}
+
+#select_hw_aq {
+  position: absolute;
+  top: 3px;
+  height: 30px;
+  color: beige;
+}
+
+select {
+  height: 100%;
+  background: inherit;
+  color: inherit;
+  border-radius: 5px;
+}
+
+option {
+  background: #161b22;
+  color: white;
 }

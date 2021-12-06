@@ -94,6 +94,14 @@ catch(Err){
 
 }
 
+function is_user_authencied(){
+  if(document.querySelector('#share_homework') == null){
+    return false
+  }else{
+    return true
+  }
+}
+
 document.querySelector('#about_input').addEventListener('input',function(){
   document.querySelector('[name=homework_about]').value = this.innerHTML
 })
@@ -109,10 +117,10 @@ el.addEventListener('click',function(e){
     e.preventDefault(); // prevent the page from reload
     var url = "/upvoted_a_homework"
     var upvoteBtn = this
-    var upv_count = this.parentNode.parentNode.querySelector('.homework_upvoted_by_count')
+    var upv_count = this.parentNode.parentNode.parentNode.querySelector('.homework_upvoted_by_count')
     var data = {
-      upvotedby_username:this.parentNode.parentNode.querySelector('.homework_postedby').innerText,
-      homework:this.parentNode.parentNode.querySelector('.homework_no').innerText,
+      upvotedby_username:this.parentNode.parentNode.parentNode.querySelector('.homework_postedby').innerText,
+      homework:this.parentNode.parentNode.parentNode.querySelector('.homework_no').innerText,
       csrfmiddlewaretoken: csrftoken,
     }
   console.log(data)
@@ -178,7 +186,15 @@ for ( var el of document.querySelectorAll('.img-slide-right')){
 }
 try{
 document.querySelector('#share_homework').addEventListener('click',function(){
+  document.querySelector('#shareModal').querySelector(`[name="linked_upload"]`).value = "none"
   document.querySelector('#shareModal').style.display = "block"
+})}
+catch(Err){
+
+}
+try{
+document.querySelector('#ask_homework').addEventListener('click',function(){
+  document.querySelector('#askModal').style.display = "block"
 })}
 catch(Err){
 
@@ -321,7 +337,7 @@ function forceDownload(url, fileName){
 
 for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
   el.addEventListener('click',function(){
-    for( var images of this.parentElement.parentElement.querySelectorAll('img')){
+    for( var images of this.parentElement.parentElement.parentNode.querySelectorAll('img')){
       $.notify("Downloading homework", "success");
     forceDownload(images.src,'homework.jpg')
       // var link = document.createElement('a');
@@ -336,9 +352,58 @@ for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
 
 for(var el of document.querySelectorAll('.bi-share')){
   el.addEventListener('click',function(){
-    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/%20${this.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
+    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/%20${this.parentNode.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
     $.notify("Share link copied to clipboard", "success");
   })
+}
+
+for(var el of document.querySelectorAll('.pending_works_change_icon')){
+  el.addEventListener('click',function(e){
+    //if(this.classList.contains('bi-file-earmark-plus')){
+      if(is_user_authencied())
+      {e.preventDefault(); // prevent the page from reload
+      var url = "/update_pending_works"
+      var pending_Workaddbtn = this
+      //var upv_count = this.parentNode.parentNode.parentNode.querySelector('.homework_upvoted_by_count')
+      var data = {
+        homework_id:parseInt(this.parentNode.parentNode.parentNode.querySelector('.homework_no').innerText),
+        csrfmiddlewaretoken: csrftoken,
+      }
+    console.log(data)
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+      }).done(function(response) {
+        console.log(response)
+        if(response.success == 'added'){
+          pending_Workaddbtn.classList.remove('bi-file-earmark-plus')
+          pending_Workaddbtn.classList.add('bi-file-earmark-minus')
+          $.notify("Homework added to pending works", "success");
+        }else if(response.success == 'removed'){
+          pending_Workaddbtn.classList.remove('bi-file-earmark-minus')
+          pending_Workaddbtn.classList.add('bi-file-earmark-plus')
+          $.notify("Homework removed from pending works", "success");
+        }
+          })}else{
+            $.notify("Login to like or add pending works", "warning");
+          }
+    
+    
+    
+  })
+}
+try{
+document.querySelector('#select_hw_aq').addEventListener('input',function(){
+  if(this.children[0].value == 'Homeworks' ){
+    document.querySelector('#HomeworkHome').style.display = "block"
+    document.querySelector('#askedWorkHome').style.display = "none"
+  }else{
+    document.querySelector('#askedWorkHome').style.display = "block"
+    document.querySelector('#HomeworkHome').style.display = "none"
+  }
+})}catch(err){
+
 }
 
 // document.querySelector('#edit_profile_btn').addEventListener('click',function(){
@@ -365,8 +430,125 @@ document.body.addEventListener('click',function(e){
   document.querySelector('#searchhelpmework').style.display = "none"
   try{
   document.querySelector('.profile_div').style.display = "grid"}
-  catch(Err){
-
-  }
-}
+  catch(err){}}
 })
+
+
+for(var el of document.querySelectorAll('.bi-trash-fill')){
+  el.addEventListener('click',function(e){
+    var confirm_ = confirm("Are you sure want to delete this?")
+    console.log(confirm_)
+    if(confirm_){
+      e.preventDefault(); // prevent the page from reload
+      var url = "/delete_homework"
+      var delete_btn = this
+      //var upv_count = this.parentNode.parentNode.parentNode.querySelector('.homework_upvoted_by_count')
+      var data = {
+        homework_id:parseInt(this.parentNode.parentNode.parentNode.querySelector('.homework_no').innerText),
+        csrfmiddlewaretoken: csrftoken,
+      }
+    console.log(data)
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+      }).done(function(response) {
+        //console.log(response)
+        if(response.success == 'deleted'){
+          delete_btn.parentNode.parentNode.parentNode.remove()
+          $.notify("Homework deleted", "success");
+        }else {
+          
+        }
+          })
+    }
+  })
+}
+
+
+for(var el of document.querySelectorAll('.question_share')){
+  el.addEventListener('click',function(){
+    var container = this.parentNode.parentNode.parentNode
+    var question = container.querySelector('.asked_question').innerText.replace(/ /g,"_");
+    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/asked_works/${container.querySelector('.asked_question_id').innerText}/${question}`)
+    $.notify("Share link copied to clipboard", "success");
+  })
+}
+
+for(var el of document.querySelectorAll('.bi-trash')){
+  el.addEventListener('click',function(e){
+    var confirm_ = confirm("Are you sure want to delete this?")
+    console.log(confirm_)
+    if(confirm_){
+      e.preventDefault(); // prevent the page from reload
+      var url = "/delete_question"
+      var delete_btn = this
+      //var upv_count = this.parentNode.parentNode.parentNode.querySelector('.homework_upvoted_by_count')
+      var data = {
+       q_id:parseInt(this.parentNode.parentNode.parentNode.querySelector('.asked_question_id').innerText),
+        csrfmiddlewaretoken: csrftoken,
+      }
+    console.log(data)
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+      }).done(function(response) {
+        //console.log(response)
+        if(response.success == 'deleted'){
+          delete_btn.parentNode.parentNode.parentNode.parentNode.remove()
+          $.notify("question deleted", "success");
+        }else {
+          
+        }
+          })
+    }
+  })
+}
+
+for(var el of document.querySelectorAll('.question_upload')){
+  el.addEventListener('click',function(){
+    //console.log(is_user_authencied())
+    if(is_user_authencied()){
+      document.querySelector('#shareModal').querySelector(`[name="linked_upload"]`).value = this.parentNode.parentNode.parentNode.querySelector('.asked_question_id').innerText
+      document.querySelector('#shareModal').style.display = "block"
+    }else{
+      $.notify("Login to like or share a homework", "error");
+    }
+  })
+}
+
+
+
+
+
+Date.prototype.toDateInputValue = (function() {
+  var local = new Date(this);
+  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+  return local.toJSON().slice(0,10);
+});
+
+// $(document).ready( function() {
+//   for(var el of document.querySelectorAll(`input[type="date"]`)){
+//     el.value = new Date().toDateInputValue();
+//   }
+// });​
+
+window.addEventListener("load", function(){
+  for(var el of document.querySelectorAll(`input[type="date"]`)){
+    el.value = new Date().toDateInputValue();
+  }
+});
+
+
+for(var el of document.querySelectorAll('.view_que_homeworks')){
+  el.addEventListener('click',function(){
+    if(this.innerText == 'View homeworks' ){
+    this.parentNode.parentNode.style.height = "fit-content"
+    this.innerText = "minimize"}
+    else{
+      this.parentNode.parentNode.style.height = "220px"
+    this.innerText = "View homeworks"
+    }
+  })
+}

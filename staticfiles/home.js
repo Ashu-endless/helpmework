@@ -183,6 +183,13 @@ document.querySelector('#share_homework').addEventListener('click',function(){
 catch(Err){
 
 }
+try{
+document.querySelector('#ask_homework').addEventListener('click',function(){
+  document.querySelector('#askModal').style.display = "block"
+})}
+catch(Err){
+
+}
 
 const NSHF = document.querySelector('#NSHF')
 const NSUF = document.querySelector('#NSUF')
@@ -321,7 +328,7 @@ function forceDownload(url, fileName){
 
 for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
   el.addEventListener('click',function(){
-    for( var images of this.parentElement.parentElement.querySelectorAll('img')){
+    for( var images of this.parentElement.parentElement.parentNode.querySelectorAll('img')){
       $.notify("Downloading homework", "success");
     forceDownload(images.src,'homework.jpg')
       // var link = document.createElement('a');
@@ -336,7 +343,7 @@ for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
 
 for(var el of document.querySelectorAll('.bi-share')){
   el.addEventListener('click',function(){
-    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/%20${this.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
+    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/%20${this.parentNode.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
     $.notify("Share link copied to clipboard", "success");
   })
 }

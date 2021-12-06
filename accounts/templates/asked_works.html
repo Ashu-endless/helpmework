@@ -1,0 +1,138 @@
+{% extends "home.html" %}
+
+
+
+{% block content %}
+
+<div id="askedWorkHome" style="display:block;">
+
+
+<div class="askednanswerContainer" >
+<div class="askedCOntainer">
+    <div class="postedby_profile" style="height:20%;" >
+        <span class="postedby_profilepic profile"  ></span>
+        <a href="{% url 'view_profile' question.user %}" class="homework_postedby">{{question.user}}</a>
+        <span class="homework_posttime"> {{question.posttime}} </span>
+        </div>
+        <div class="asked_question" >{{question.question}} </div>
+        <div class="question_interaction_div" >
+        <div class="question_upload_div" >
+            <span class="question_upload">Upload Work</span>
+        </div>
+        <div class="hide asked_question_id">{{question.id}}</div>
+            <div class="question_interaction" >
+                <span class="question_share"><i class="bi bi-share"></i> share with someone who can send </span>
+                <span class="question_waiting">
+                    <i class="bi bi-people-fill"></i>
+                    waiting
+                </span>
+               {% if request.user == question.user %}
+               <i class="bi bi-trash"></i>
+               {% else %}
+               {% endif %}
+               
+            </div>
+        </div>
+        {% if question.homework_ids|length != 0 %}
+        <div class="view_que_homeworks" >View homeworks</div>
+        {% else %}
+        {% endif %}
+</div>
+
+
+{% for homework in homeworks  %}
+    {% if homework.id in question.homework_ids %}
+        <div class="homework_container" >
+<div class="postedby_profile" >
+<span class="postedby_profilepic profile" ></span>
+<a class="homework_postedby" href="{% url 'view_profile' homework.postedby %}" > {{homework.postedby}}</a>
+<span class="homework_posttime" > {{homework.posttime | date:"d M Y f A"}}</span>
+</div>
+
+
+<i class="bi bi-caret-left-fill img-slide-left"></i>
+
+
+{% if homework.imgsrcs|length == 1 %}
+<i class="bi bi-caret-right-fill img-slide-right" style="display:none;"></i>
+
+{% else %}
+<i class="bi bi-caret-right-fill img-slide-right" ></i>
+{% endif %}
+
+
+
+<div class="homework_img_divs">
+{% comment %} {% if len(homework.imgsrcs) == 1 %}
+"true"
+{% else %}
+{% endif %} {% endcomment %}
+
+{% for imgsrc in homework.imgsrcs %}
+
+{% if forloop.counter == 1 %}
+<img  src={{ imgsrc }} class="homework_img active_img">
+{% else %}
+<img  src={{ imgsrc }} class="homework_img unactive_img">
+{% endif %}
+{% endfor %}
+
+</div>
+{% comment %} |slice:"1:-1" {% endcomment %}
+
+<span class="homework_description" > {{homework.description}}</span>
+
+
+<div class="homework_interaction_div">
+<div  class="interaction_div_stars" >
+{% if request.user in homework.upvoted_by.all %} 
+<i class="bi bi-star-fill upvote_btn"></i>
+{% else %}
+<i class="bi bi-star upvote_btn" ></i>
+{% endif %} 
+
+<span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
+</div>
+
+<div class="interaction_div_btns" >
+<i class="bi bi-share"  ></i>
+{% if homework.pk in userprofile.pending_works %}
+<i class="bi bi-file-earmark-minus pending_works_change_icon"></i>
+{% else %}
+<i class="bi bi-file-earmark-plus pending_works_change_icon"></i>
+{% endif %}
+
+<i class="bi bi-file-earmark-arrow-down"></i>
+{% if request.user == homework.postedby %}
+<i class="bi bi-trash-fill"></i>
+{% else %}
+{% endif %}
+
+</div>
+
+ </div>
+
+
+
+<div style="display:none;" >
+{% for voters in homework.upvoted_by.all %}
+{{voters}}
+{% endfor %}
+</div>
+<span class="homework_no">{{homework.pk}}</span>
+
+</div>
+    {% else %}
+    {% endif %}
+{% endfor %}
+
+</div>
+
+</div>
+
+
+
+ 
+
+
+{% endblock content %}

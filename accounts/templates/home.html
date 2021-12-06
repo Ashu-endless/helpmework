@@ -17,7 +17,7 @@
 
 <div id="searchModal" >
     <i class="bi bi-x-square hidemyprnt"></i>
-    <div id="usernhw_search_switcher" > <div class="usernhw_search_switcher_span" ><i class="bi bi-people-fill"></i>Users</div> <div class="usernhw_search_switcher_span" style="color:blueviolet;" > <i class="bi bi-journal-text"></i> Homeworks</div>  </div>
+    <div id="usernhw_search_switcher" > <div class="usernhw_search_switcher_span" ><i class="bi bi-people-fill"></i>Users</div> <div class="usernhw_search_switcher_span" style="color:blueviolet;" > <i class="bi bi-journal-text"></i> Homeworks <i id="filter_btn" class="bi bi-sort-numeric-down"></i> </div>  </div>
     <div id="UsersearchModalDiv" class="searchModalDiv"></div>
     <div id="HomeworksearchModalDiv" class="searchModalDiv" ></div>
 </div>
@@ -28,6 +28,8 @@
 </a>
 
 <div class="arrowboxbtn" id="share_homework">Share</div>
+<div class="arrowboxbtn" id="ask_homework">Ask work</div>
+<a class="arrowboxbtn" href="{% url 'pending_works' request.user %}"  id="ask_homework">Pending works</a>
 {% comment %} <div class="arrowboxbtn">Edit profile</div>    {% endcomment %}
 
 <form class="arrowboxbtn" action="/logout" method="GET">
@@ -37,9 +39,19 @@
 {% else %}
 {% endif %}
 
-<div id="shareModal" >
+<div id="askModal" class="blur_bg">
+<i class="bi bi-x-square hidemyprnt"></i>
+<form id="" class="shareModalDiv" action="/upload_question" method="POST" >
+{% csrf_token %}
+<textarea name="question"  id="ask_homework_input" ></textarea>
+<button id="ask_homework_div" type="submit" >Ask</button>
+</form>  
+</div>
+
+
+<div id="shareModal" class="blur_bg" >
     <i class="bi bi-x-square hidemyprnt"></i>
-    <form class="shareModalDiv" id="shareModalDivpost" action="/share" method="POST" >
+    <form class="shareModalDiv"  id="shareModalDivpost" action="/share" method="POST" >
      {% csrf_token %}
       <div id="previewing_img" ></div>
       <div id="preview_img_div">
@@ -49,6 +61,11 @@
     <div id="about_input"  contenteditable="true" ></div>
     <input type="text" name="homework_about" class="hide" >
     <input type="text" name="homework_images" class="hide">
+    <input type="text" placeholder="Subject" id="homework_subject" name="homework_subject" id="">
+    <div id="homework_donedate_lable" > work done date
+        <input type="date" name="homework_donedate" id="homework_donedate">
+    </div>
+    <input type="text" name="linked_upload" id="" class="hide">
     <button id="Sharebtn"class="" type="submit" >Share</button>
 </form>
 
@@ -63,11 +80,158 @@
 
 {% block content %}
 
+<div id="select_hw_aq">
+    <select name="" id="">
+        <option value="Homeworks" >homeworks</option>
+        <option value="askedworked" >asked homeworks</option>
+    </select>
+</div>
+
+
+<div id="askedWorkHome" style="display:none;">
+{% for question in Questions  %}
+
+<div class="askednanswerContainer" >
+<div class="askedCOntainer">
+    <div class="postedby_profile" style="height:20%;" >
+        <span class="postedby_profilepic profile"  ></span>
+        <a href="{% url 'view_profile' question.user %}" class="homework_postedby">{{question.user}}</a>
+        <span class="homework_posttime"> {{question.posttime}} </span>
+        </div>
+        <div class="asked_question" >{{question.question}} </div>
+        <div class="question_interaction_div" >
+        <div class="question_upload_div" >
+            <span class="question_upload">Upload Work</span>
+        </div>
+        <div class="hide asked_question_id">{{question.id}}</div>
+            <div class="question_interaction" >
+                <span class="question_share"><i class="bi bi-share"></i> share with someone who can send </span>
+                <span class="question_waiting">
+                    <i class="bi bi-people-fill"></i>
+                    waiting
+                </span>
+               {% if request.user == question.user %}
+               <i class="bi bi-trash"></i>
+               {% else %}
+               {% endif %}
+               
+            </div>
+        </div>
+        {% if question.homework_ids|length != 0 %}
+        <div class="view_que_homeworks" >View homeworks</div>
+        {% else %}
+        {% endif %}
+</div>
+
+
+{% for homework in homeworks  %}
+    {% if homework.id in question.homework_ids %}
+        <div class="homework_container" >
+<div class="postedby_profile" >
+<span class="postedby_profilepic profile" ></span>
+<a class="homework_postedby" href="{% url 'view_profile' homework.postedby %}" > {{homework.postedby}}</a>
+<span class="homework_posttime" > {{homework.posttime | date:"d M Y f A"}}</span>
+</div>
+
+
+<i class="bi bi-caret-left-fill img-slide-left"></i>
+
+
+{% if homework.imgsrcs|length == 1 %}
+<i class="bi bi-caret-right-fill img-slide-right" style="display:none;"></i>
+
+{% else %}
+<i class="bi bi-caret-right-fill img-slide-right" ></i>
+{% endif %}
+
+
+
+<div class="homework_img_divs">
+{% comment %} {% if len(homework.imgsrcs) == 1 %}
+"true"
+{% else %}
+{% endif %} {% endcomment %}
+
+{% for imgsrc in homework.imgsrcs %}
+
+{% if forloop.counter == 1 %}
+<img  src={{ imgsrc }} class="homework_img active_img">
+{% else %}
+<img  src={{ imgsrc }} class="homework_img unactive_img">
+{% endif %}
+{% endfor %}
+
+</div>
+{% comment %} |slice:"1:-1" {% endcomment %}
+
+<span class="homework_description" > {{homework.description}}</span>
+
+
+<div class="homework_interaction_div">
+<div  class="interaction_div_stars" >
+{% if request.user in homework.upvoted_by.all %} 
+<i class="bi bi-star-fill upvote_btn"></i>
+{% else %}
+<i class="bi bi-star upvote_btn" ></i>
+{% endif %} 
+
+<span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
+</div>
+
+<div class="interaction_div_btns" >
+<i class="bi bi-share"  ></i>
+{% if homework.pk in userprofile.pending_works %}
+<i class="bi bi-file-earmark-minus pending_works_change_icon"></i>
+{% else %}
+<i class="bi bi-file-earmark-plus pending_works_change_icon"></i>
+{% endif %}
+
+<i class="bi bi-file-earmark-arrow-down"></i>
+{% if request.user == homework.postedby %}
+<i class="bi bi-trash-fill"></i>
+{% else %}
+{% endif %}
+
+</div>
+
+ </div>
+
+
+
+<div style="display:none;" >
+{% for voters in homework.upvoted_by.all %}
+{{voters}}
+{% endfor %}
+</div>
+<span class="homework_no">{{homework.pk}}</span>
+
+</div>
+    {% else %}
+    {% endif %}
+{% endfor %}
+
+</div>
+{% endfor %}
+</div>
+
+
+
+
+<div>
+    <div>
+        <input type="date" name="" id="">
+        
+     </div>
+    <div> <span>Apply filter</span>  <span>Close</span> </div>
+</div>
 
 <div id="HomeworkHome" >
 
 
+
+{% comment %} view_homework {% endcomment %}
 {% if homework %}
+
 <div class="homework_container" >
 <div class="postedby_profile" >
 <span class="postedby_profilepic profile" ></span>
@@ -96,8 +260,8 @@
 <span class="homework_description" > {{homework.description}}</span>
 
 
-<div class="homework_upvoted_by_div">
-
+<div class="homework_interaction_div">
+    <div  class="interaction_div_stars" >
 {% if request.user in homework.upvoted_by.all %} 
 
 <i class="bi bi-star-fill upvote_btn"></i>
@@ -108,11 +272,22 @@
 
 
 <span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
+</div>
+<div class="interaction_div_btns" >
 <i class="bi bi-share"  ></i>
+{% if homework.pk in userprofile.pending_works %}
+<i class="bi bi-file-earmark-minus pending_works_change_icon"></i>
+{% else %}
+<i class="bi bi-file-earmark-plus pending_works_change_icon"></i>
+{% endif %}
 <i class="bi bi-file-earmark-arrow-down"></i>
-
-
- </div>
+{% if request.user == homework.postedby %}
+<i class="bi bi-trash-fill"></i>
+{% else %}
+{% endif %}
+</div>
+ 
+</div>
 
 
 
@@ -122,8 +297,8 @@
 {% endfor %}
 </div>
 <span class="homework_no">{{homework.pk}}</span>
-
 </div>
+
 {% else %}
 
 
@@ -132,7 +307,9 @@
  {% comment %} ????????!!!!!!!!!!!! {% endcomment %}
  {% comment %} ????????!!!!!!!!!!!! {% endcomment %}
 
- {% for homework in homeworks %}
+
+
+{% for homework in homeworks %}
 
 <div class="homework_container" >
 <div class="postedby_profile" >
@@ -175,20 +352,32 @@
 <span class="homework_description" > {{homework.description}}</span>
 
 
-<div class="homework_upvoted_by_div">
-
+<div class="homework_interaction_div">
+<div  class="interaction_div_stars" >
 {% if request.user in homework.upvoted_by.all %} 
-
 <i class="bi bi-star-fill upvote_btn"></i>
 {% else %}
 <i class="bi bi-star upvote_btn" ></i>
 {% endif %} 
 
-
-
 <span class="homework_upvoted_by_count"> {{ homework.upvoted_by.all | length }}</span>
-<i class="bi bi-share" ></i>
-<i class="bi bi-file-earmark-arrow-down" ></i>
+</div>
+
+<div class="interaction_div_btns" >
+<i class="bi bi-share"  ></i>
+{% if homework.pk in userprofile.pending_works %}
+<i class="bi bi-file-earmark-minus pending_works_change_icon"></i>
+{% else %}
+<i class="bi bi-file-earmark-plus pending_works_change_icon"></i>
+{% endif %}
+
+<i class="bi bi-file-earmark-arrow-down"></i>
+{% if request.user == homework.postedby %}
+<i class="bi bi-trash-fill"></i>
+{% else %}
+{% endif %}
+
+</div>
 
  </div>
 
@@ -202,7 +391,7 @@
 <span class="homework_no">{{homework.pk}}</span>
 
 </div>
-{% comment %} Container  {% endcomment %}
+{% comment %} HOME Container  {% endcomment %}
 
 {% endfor %}
 
@@ -210,7 +399,9 @@
 {% endif %}
 
 
+
 {% comment %} Container ka container {% endcomment %}
+
 </div>
 
 

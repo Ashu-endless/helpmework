@@ -50,6 +50,86 @@
 <p>Don't have an account? <a href="{% url 'signup_page' %}">Register</a></p> {% endcomment %}
 {% endblock content %}
 
+
+
+<div class="askedCOntainer" style="
+    position: relative;
+    background: black;
+    border-radius: 5px;
+    height: 221px;
+    min-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50vw;
+    max-width: 400px;
+">
+    <div class="postedby_profile">
+        <span class="postedby_profilepic profile"></span>
+        <a href="/view_profile/Ashu_Endless/" class="homework_postedby"> Ashu_Endless</a>
+        <span class="homework_posttime"> 27th oct 2022</span>
+        </div>
+        <div class="asked_question" style="
+    position: absolute;
+    top: 20%;
+    border: 1px white dashed;
+    left: 0;
+    right: 0;
+    height: 50%;
+    padding: 5px;
+    box-sizing: border-box;
+"> Can anyone send me todays english work </div>
+        <div style="
+    position: absolute;
+    top: 70%;
+    height: 30%;
+    left: 0;
+    right: 0;
+"><div style="
+    display: grid;
+    position: absolute;
+    width: 40%;
+    left: 0;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    cursor: pointer;
+">
+            <span style="
+    background: #5294e2;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+">Upload Work</span>
+        </div>
+            <div style="
+    position: absolute;
+    right: 0;
+    width: 60%;
+    display: grid;
+    gap: 5px;
+    padding: 5px;
+">
+                <span style="
+    background: cornflowerblue;
+    font-size: small;
+    padding: 2px;
+    border-radius: 2px;
+    box-sizing: border-box;
+"><i class="bi bi-share"></i> share with someone who can send </span>
+                <span style="
+    background: green;
+    /* height: 100%; */
+    padding: 2px;
+    border-radius: 2px;
+    box-sizing: border-box;
+">
+                    <i class="bi bi-people-fill"></i>
+                    waiting
+                </span>
+               
+            </div></div>
+</div>
+
 {% block script %}
 <script src="{% static 'login.js' %}" type="module"></script>
 
