@@ -79,13 +79,17 @@
 {% endblock nav %}
 
 {% block content %}
+{% if question %}
 
+{% else %}
 <div id="select_hw_aq">
     <select name="" id="">
         <option value="Homeworks" >homeworks</option>
         <option value="askedworked" >asked homeworks</option>
     </select>
 </div>
+
+{% endif %}
 
 
 <div id="askedWorkHome" style="display:none;">

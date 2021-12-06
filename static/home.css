@@ -64,7 +64,7 @@ body {
 }
 
 #HomeworksearchModalDiv {
-  display: block;
+  display: grid;
   flex-flow: wrap;
   overflow-y: auto;
   gap: 5%;
@@ -460,7 +460,9 @@ img.homework_img {
   top: 10px;
   
 }
-
+.question_share{
+  font-size: small;
+}
 
 }
 
@@ -702,7 +704,7 @@ option {
 .question_interaction_div {
   position: absolute;
   top: 60%;
-  height: 30%;
+  height: 25%;
   left: 0;
   right: 0;
 }
@@ -732,12 +734,13 @@ option {
   
 }
 
-.view_que_homeworks{
+.view_que_homeworks {
   position: absolute;
-  top: 90%;
+  top: 87%;
   background: orange;
   left: 5px;
   right: 5px;
   text-align: center;
   border-radius: 2px;
+  padding: 2px;
 }

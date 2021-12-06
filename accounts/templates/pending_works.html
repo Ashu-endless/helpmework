@@ -55,9 +55,9 @@
 
 
 <div class="homework_interaction_div">
-
-{% if request.user in homework.upvoted_by.all %} 
 <div  class="interaction_div_stars" >
+{% if request.user in homework.upvoted_by.all %} 
+
 <i class="bi bi-star-fill upvote_btn"></i>
 {% else %}
 <i class="bi bi-star upvote_btn" ></i>

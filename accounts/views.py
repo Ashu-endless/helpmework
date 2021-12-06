@@ -94,8 +94,8 @@ def user_search(request):
     if request.method == 'POST':
         query = request.POST.get('todo_name')
         #print(query)
-        query_user = serializers.serialize("json", User.objects.filter(username__startswith=query))
-        query_homework = serializers.serialize("json", helpmework.objects.filter(description__startswith=query))
+        query_user = serializers.serialize("json", User.objects.filter(username__icontains=query))
+        query_homework = serializers.serialize("json", helpmework.objects.filter(description__icontains=query))
 
         users  = json.loads(query_user)
         homeworks = json.loads(query_homework)
@@ -218,7 +218,10 @@ def show_pending_Works(request,user_name):
             mainProfile = MainProfile.objects.get(user=request.user.id)
             count = len(mainProfile.pending_works)
             homeworks = helpmework.objects.filter(pk__in=mainProfile.pending_works)
-            mainProfile = MainProfile.objects.get(user=request.user.id)
+            try:
+                mainProfile = MainProfile.objects.get(user=request.user.id)
+            except:
+                mainProfile = ""
             return render(request,'pending_works.html',{'count':count,'homeworks':homeworks,'userprofile':mainProfile})
 
 def update_to_pending_works(request):
