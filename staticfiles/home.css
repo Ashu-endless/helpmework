@@ -1,5 +1,5 @@
 nav {
-  background: #161b22;
+  background: #0d1117;
   height: 40px;
   display: grid;
   grid-auto-flow: column;
@@ -614,8 +614,6 @@ option {
 }
 
 #homework_donedate {
-  /* position: absolute; */
-  /* top: 99%; */
   left: 30%;
   background: inherit;
   color: white;
@@ -730,6 +728,8 @@ option {
   margin-right: auto;
   margin-bottom: 10vh;
   overflow:hidden;
+  filter: drop-shadow(7px 7px 3px black);
+  
 }
 
 .view_que_homeworks{

@@ -188,7 +188,11 @@ def sharehomework(request):
 
 def view_homework(request,hw_id):
         homework = helpmework.objects.get(id=hw_id)
-        mainProfile = MainProfile.objects.get(user=request.user.id)
+        try:
+            mainProfile = MainProfile.objects.get(user=request.user.id)
+        except:
+            mainProfile = ""
+
         return render(request, "home.html",{'homework':homework,'userprofile':mainProfile})
 
 def update_profile(request):
