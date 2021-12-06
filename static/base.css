@@ -50,7 +50,7 @@ button {
 } */
 
 .homework_container {
-  height: 75vh;
+  height: 80vh;
   width: 50vw;
   border-radius: 5px;
   background-color: #000000;
@@ -63,8 +63,9 @@ button {
   margin-left: auto;
   margin-right: auto;
   min-height: 400px;
-  max-height: 450px;
+  max-height: 480px;
   filter: drop-shadow(2px 4px 6px black);
+  margin-bottom: 5vh;
 }
 
 .view_profile_div{

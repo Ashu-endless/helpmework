@@ -141,7 +141,7 @@ body {
 #HomeworkHome,
 #askedWorkHome {
   position: fixed;
-  top: 80px;
+  top: 90px;
   bottom: 0%;
   overflow-y: auto;
   right: 0;
@@ -548,6 +548,7 @@ option {
   display: grid;
   align-content: center;
   cursor: pointer;
+  display: none;
 }
 
 #filter_modal{

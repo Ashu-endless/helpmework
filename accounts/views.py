@@ -28,7 +28,10 @@ def homepage(request):
     #print(homeworks)
     context = {'data':data}
     #print(context['data'])
-    mainProfile = MainProfile.objects.get(user=request.user.id)
+    try:
+        mainProfile = MainProfile.objects.get(user=request.user.id)
+    except:
+        mainProfile = ""
     #print(helpmework.objects.get(postedby="1"))
     #raj = helpmework.objects.get(postedby="1")
     #print(raj.upvoted_by.all())
