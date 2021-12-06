@@ -216,12 +216,14 @@ def CheckUsernameAvailibity(request):
 def show_pending_Works(request,user_name):
         if request.user.username == user_name:
             #mainProfile = MainProfile.objects.get(user=request.user.id)
-            count = len(mainProfile.pending_works)
+            
             homeworks = helpmework.objects.filter(pk__in=mainProfile.pending_works)
             try:
                 mainProfile = MainProfile.objects.get(user=request.user.id)
+                count = len(mainProfile.pending_works)
             except:
                 mainProfile = ""
+                count = 0
             return render(request,'pending_works.html',{'count':count,'homeworks':homeworks,'userprofile':mainProfile})
 
 def update_to_pending_works(request):
