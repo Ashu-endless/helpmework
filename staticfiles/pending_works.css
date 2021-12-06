@@ -1,0 +1,22 @@
+.pending_works_p {
+    position: absolute;
+    top: 50px;
+    font-family: cursive;
+    font-size: x-large;
+    color: beige;
+}
+
+#pending_homeworks_container {
+    display: grid;
+    grid-auto-flow: column;
+    top: 110px;
+    position: absolute;
+    width: 100%;
+    overflow-x: auto;
+    gap: 40px;
+    /* left: 2%; */
+    /* right: inherit; */
+    padding-right: 30px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
