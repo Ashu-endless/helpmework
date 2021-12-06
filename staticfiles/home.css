@@ -461,7 +461,7 @@ img.homework_img {
   
 }
 .question_share{
-  font-size: small;
+  font-size: xx-small;
 }
 
 }
@@ -747,7 +747,7 @@ option {
 
 
 .add-btn{
-    display: grid;
+    display: none;
     height: 100px;
     width: 100px;
     position: absolute;

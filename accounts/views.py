@@ -215,7 +215,7 @@ def CheckUsernameAvailibity(request):
 
 def show_pending_Works(request,user_name):
         if request.user.username == user_name:
-            mainProfile = MainProfile.objects.get(user=request.user.id)
+            #mainProfile = MainProfile.objects.get(user=request.user.id)
             count = len(mainProfile.pending_works)
             homeworks = helpmework.objects.filter(pk__in=mainProfile.pending_works)
             try:
