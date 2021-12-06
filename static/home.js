@@ -352,7 +352,8 @@ for (var el of document.querySelectorAll('.bi-file-earmark-arrow-down')){
 
 for(var el of document.querySelectorAll('.bi-share')){
   el.addEventListener('click',function(){
-    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/%20${this.parentNode.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
+    copyTextToClipboard(`https://helpmework.herokuapp.com/view_homework/%20${this.parentNode.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
+    //navigator.clipboard.writeText(`https://helpmework.herokuapp.com/view_homework/%20${this.parentNode.parentNode.parentNode.querySelector('.homework_no').innerText}/`)
     $.notify("Share link copied to clipboard", "success");
   })
 }
@@ -469,8 +470,9 @@ for(var el of document.querySelectorAll('.bi-trash-fill')){
 for(var el of document.querySelectorAll('.question_share')){
   el.addEventListener('click',function(){
     var container = this.parentNode.parentNode.parentNode
+    copyTextToClipboard(`https://helpmework.herokuapp.com/asked_works/${container.querySelector('.asked_question_id').innerText}/${question}`)
     var question = container.querySelector('.asked_question').innerText.replace(/ /g,"_");
-    navigator.clipboard.writeText(`https://helpmework.herokuapp.com/asked_works/${container.querySelector('.asked_question_id').innerText}/${question}`)
+    //navigator.clipboard.writeText(`https://helpmework.herokuapp.com/asked_works/${container.querySelector('.asked_question_id').innerText}/${question}`)
     $.notify("Share link copied to clipboard", "success");
   })
 }
@@ -587,3 +589,28 @@ for(var el of document.querySelectorAll('.view_que_homeworks')){
 //       });
 //   });
 // });
+
+
+function fallbackCopyTextToClipboard(text) {
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Fallback: Copying text command was ' + msg);
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+
+
+}
+
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {
+    console.log('Async: Copying to clipboard was successful!');
+  }, function(err) {
+    console.error('Async: Could not copy text: ', err);
+  });
+}
