@@ -387,7 +387,7 @@ for(var el of document.querySelectorAll('.pending_works_change_icon')){
           $.notify("Homework removed from pending works", "success");
         }
           })}else{
-            $.notify("Login to like or add pending works", "warning");
+            $.notify("Login to like or add pending works", "error");
           }
     
     
@@ -470,8 +470,9 @@ for(var el of document.querySelectorAll('.bi-trash-fill')){
 for(var el of document.querySelectorAll('.question_share')){
   el.addEventListener('click',function(){
     var container = this.parentNode.parentNode.parentNode
-    copyTextToClipboard(`https://helpmework.herokuapp.com/asked_works/${container.querySelector('.asked_question_id').innerText}/${question}`)
     var question = container.querySelector('.asked_question').innerText.replace(/ /g,"_");
+
+    copyTextToClipboard(`https://helpmework.herokuapp.com/asked_works/${container.querySelector('.asked_question_id').innerText}/${question}`)
     //navigator.clipboard.writeText(`https://helpmework.herokuapp.com/asked_works/${container.querySelector('.asked_question_id').innerText}/${question}`)
     $.notify("Share link copied to clipboard", "success");
   })
