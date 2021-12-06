@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{% static 'home.css' %}">
 {% endblock headload %}
 {% block nav %}
+<div class="add-btn">Add to home screen for better experience</div>
 <nav> <a href="{% url 'home' %}" class="home_icon" > <i class="bi bi-house-fill" ></i></a> <input type="text" name="" id="searchhelpmework" autocomplete="off" placeholder="search">  <i id="HMWSearchIcon" class="bi bi-search searchicon"></i> <a class="titlemain"  href="{% url 'home' %}">Help me work</a> 
 {% if request.user.is_authenticated %}
 <div class="profile_div" ><span class="profile" ></span> <i class="bi bi-caret-down-fill profile_dropdownicon"></i> </div>
