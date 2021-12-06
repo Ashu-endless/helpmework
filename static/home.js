@@ -528,11 +528,11 @@ Date.prototype.toDateInputValue = (function() {
   return local.toJSON().slice(0,10);
 });
 
-$(document).ready( function() {
-  for(var el of document.querySelectorAll(`input[type="date"]`)){
-    el.value = new Date().toDateInputValue();
-  }
-});​
+// $(document).ready( function() {
+//   for(var el of document.querySelectorAll(`input[type="date"]`)){
+//     el.value = new Date().toDateInputValue();
+//   }
+// });​
 
 window.addEventListener("load", function(){
   for(var el of document.querySelectorAll(`input[type="date"]`)){
