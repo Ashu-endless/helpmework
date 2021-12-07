@@ -163,7 +163,7 @@ def sharehomework(request):
         homework_about = request.POST.get('homework_about')
         homework_donedate = request.POST.get('homework_donedate')
         homework_sub = request.POST.get('homework_subject')
-        q_id = int(request.POST.get('linked_upload'))
+        q_id = request.POST.get('linked_upload')
         
             
         #print(homework_about)
@@ -176,6 +176,7 @@ def sharehomework(request):
         print(shared_hw)
         print(q_id)
         if q_id != 'none':
+            q_id = int(q_id)
             print(shared_hw.id)
             question = Questions.objects.get(id=q_id)
             print(question)
