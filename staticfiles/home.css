@@ -71,6 +71,14 @@ body {
   padding: 5%;
 }
 
+.question_share {
+  background: #135621;
+  font-size: small;
+  padding: 5px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
 
 .usernhw_search_switcher_span {
   height: 100%;
@@ -662,14 +670,7 @@ option {
   border-radius: 5px;
 }
 
-.question_share {
-  background: #135621;
-  font-size: medium;
-  padding: 5px;
-  border-radius: 2px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
+
 .question_waiting {
   background: green;
   /* height: 100%; */
