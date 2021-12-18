@@ -253,11 +253,12 @@
 <i class="bi bi-caret-right-fill img-slide-right" ></i>
 {% endif %}
 
-{% for imgsrc in homework.imgsrcs %}
-{% if forloop.counter == 1 %}
-<img src={{ imgsrc }} alt="" class="activeimg">
+{% if homework.imgsrcs|length == 1 %}
+<img src={{ homework.imgsrcs.0 }} alt="" class="activeimg" style="height: 65%;">
+{% else %}
+<img src={{ homework.imgsrcs.0 }} alt="" class="activeimg" style="height: 55%;">
 {% endif %}
-{% endfor %}
+
 
 {% if homework.imgsrcs|length != 1 %}
 <div class="homework_img_divs">
@@ -347,7 +348,6 @@
 
 
 
-
 {% if homework.imgsrcs|length == 1 %}
 <img src={{ homework.imgsrcs.0 }} alt="" class="activeimg" style="height: 65%;">
 {% else %}
@@ -358,7 +358,11 @@
 {% if homework.imgsrcs|length != 1 %}
 <div class="homework_img_divs">
 {% for imgsrc in homework.imgsrcs %}
+{% if forloop.counter == 1 %}
+<img  src={{ imgsrc }} class="homework_img active_img" style="border:1px solid skyblue">
+{% else %}
 <img  src={{ imgsrc }} class="homework_img active_img">
+{% endif %}
 {% endfor %}
 </div>
 {% endif %}
