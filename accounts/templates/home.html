@@ -151,22 +151,24 @@
 
 
 
+{% if homework.imgsrcs|length == 1 %}
+<img src={{ homework.imgsrcs.0 }} alt="" class="activeimg" style="height: 65%;">
+{% else %}
+<img src={{ homework.imgsrcs.0 }} alt="" class="activeimg" style="height: 55%;">
+{% endif %}
+
+
+{% if homework.imgsrcs|length != 1 %}
 <div class="homework_img_divs">
-{% comment %} {% if len(homework.imgsrcs) == 1 %}
-"true"
-{% else %}
-{% endif %} {% endcomment %}
-
 {% for imgsrc in homework.imgsrcs %}
-
 {% if forloop.counter == 1 %}
-<img  src={{ imgsrc }} class="homework_img active_img">
+<img  src={{ imgsrc }} class="homework_img active_img" style="border:1px solid skyblue">
 {% else %}
-<img  src={{ imgsrc }} class="homework_img unactive_img">
+<img  src={{ imgsrc }} class="homework_img active_img">
 {% endif %}
 {% endfor %}
-
 </div>
+{% endif %}
 {% comment %} |slice:"1:-1" {% endcomment %}
 
 <span class="homework_description" > {{homework.description}}</span>
@@ -260,10 +262,14 @@
 {% if homework.imgsrcs|length != 1 %}
 <div class="homework_img_divs">
 {% for imgsrc in homework.imgsrcs %}
+{% if forloop.counter == 1 %}
+<img  src={{ imgsrc }} class="homework_img active_img" style="border:1px solid skyblue">
+{% else %}
 <img  src={{ imgsrc }} class="homework_img active_img">
-{% endfor %}
 {% endif %}
+{% endfor %}
 </div>
+{% endif %}
 {% comment %} |slice:"1:-1" {% endcomment %}
 
 <span class="homework_description" > {{homework.description}}</span>
