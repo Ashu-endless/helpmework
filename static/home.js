@@ -615,3 +615,18 @@ function copyTextToClipboard(text) {
     console.error('Async: Could not copy text: ', err);
   });
 }
+
+
+for(var el of document.querySelectorAll('.homework_img')){
+  el.addEventListener('click',function(){
+    
+    for(var elem of this.parentNode.children){
+      elem.style.border = `0px blue solid`
+    }
+
+
+    this.style.border = `1px skyblue solid`
+    this.parentNode.parentNode.querySelector('img').src = this.src
+  })
+}
+

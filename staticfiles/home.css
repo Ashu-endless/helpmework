@@ -213,8 +213,9 @@ body {
 
 img.homework_img {
   height: 100%;
-  width: 100%;
-  position: absolute;
+  width: 20%;
+  position: relative;
+  border-radius: 2px;
 }
 
 .shareModalDiv {
@@ -709,7 +710,13 @@ option {
   left: 0;
   right: 0;
 }
-
+.activeimg{
+  position: absolute;
+  top: 10%;
+  height: 55%;
+  width: 100%;
+  border-radius: 5px;
+}
 .askedCOntainer{
   position: relative;
   background: black;

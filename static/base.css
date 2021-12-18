@@ -98,13 +98,19 @@ button {
     font-size: large;
 }
 .homework_img_divs {
-    display: block;
-    position: absolute;
-    border: 1px white solid;
-    height: 65%;
-    left: 0%;
-    right: 0;
-    top: 10%;
+  display: block;
+  position: absolute;
+  /* border: 1px white solid; */
+  height: 9%;
+  left: 0%;
+  right: 0;
+  top: 66%;
+  display: flex;
+  grid-auto-flow: column;
+  gap: 2%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* grid-auto-columns: auto; */
 }
 span.homework_description {
   color: white;
@@ -117,7 +123,10 @@ span.homework_description {
   overflow-y: auto;
   border-bottom: 1px white solid;
   padding-left: 5px;
+  font-family: monospace;
 }
+
+
 
 span.homework_posttime {
     position: absolute;
@@ -138,6 +147,8 @@ span.homework_posttime {
   align-content: center;
   /* align-items: baseline; */
   color: cyan;
+  grid-auto-flow: column;
+  justify-content: space-between;
 }
 
 .postedby_profile{
@@ -171,6 +182,7 @@ span.homework_posttime {
   bottom: 50%;
   top: 50%;
   font-size: x-large;
+  display: none;
 }
 .img-slide-left {
     position: absolute;

@@ -250,15 +250,19 @@
 {% else %}
 <i class="bi bi-caret-right-fill img-slide-right" ></i>
 {% endif %}
-<div class="homework_img_divs">
-{% for imgsrc in homework.imgsrcs %}
 
+{% for imgsrc in homework.imgsrcs %}
 {% if forloop.counter == 1 %}
-<img  src={{ imgsrc }} class="homework_img active_img">
-{% else %}
-<img  src={{ imgsrc }} class="homework_img unactive_img">
+<img src={{ imgsrc }} alt="" class="activeimg">
 {% endif %}
 {% endfor %}
+
+{% if homework.imgsrcs|length != 1 %}
+<div class="homework_img_divs">
+{% for imgsrc in homework.imgsrcs %}
+<img  src={{ imgsrc }} class="homework_img active_img">
+{% endfor %}
+{% endif %}
 </div>
 {% comment %} |slice:"1:-1" {% endcomment %}
 
@@ -336,22 +340,23 @@
 
 
 
-<div class="homework_img_divs">
-{% comment %} {% if len(homework.imgsrcs) == 1 %}
-"true"
-{% else %}
-{% endif %} {% endcomment %}
 
-{% for imgsrc in homework.imgsrcs %}
 
-{% if forloop.counter == 1 %}
-<img  src={{ imgsrc }} class="homework_img active_img">
+{% if homework.imgsrcs|length == 1 %}
+<img src={{ homework.imgsrcs.0 }} alt="" class="activeimg" style="height: 65%;">
 {% else %}
-<img  src={{ imgsrc }} class="homework_img unactive_img">
+<img src={{ homework.imgsrcs.0 }} alt="" class="activeimg" style="height: 55%;">
 {% endif %}
-{% endfor %}
 
+
+{% if homework.imgsrcs|length != 1 %}
+<div class="homework_img_divs">
+{% for imgsrc in homework.imgsrcs %}
+<img  src={{ imgsrc }} class="homework_img active_img">
+{% endfor %}
 </div>
+{% endif %}
+
 {% comment %} |slice:"1:-1" {% endcomment %}
 
 <span class="homework_description" > {{homework.description}}</span>
