@@ -15,6 +15,7 @@
 <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/djwe9njg4/image/upload/v1638547408/favicon/android-chrome-192x192_guvebm.png">
    <link rel="manifest" href="{% static 'site.webmanifest' %}">
     <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'star.css' %}">
     <link rel="stylesheet" href="{% static 'arrowbox.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amita|Zen+Tokyo+Zoo|Yomogi|Fuggles|Tourney|Patrick+Hand|Caveat|Amatic+SC|Bangers|Tangerine|Handlee|Rock+Salt|Markazi+Text|Gruppo|Black+Han+Sans' crossorigin="anonymous">
@@ -24,15 +25,20 @@
     <title>Help me work</title>
 </head>
 <body>
-
+<div id="app" >
 {% block nav %}
 {% endblock nav %}
 
 {% block content %}
 {% endblock  %}
-
+</div>
+<div id="EndlessStartScreen" >
+        <canvas id="space"></canvas>
+        <p id="EndlessLogoText" style="color: white;" class='blink-2'>Endless</p>
+        <!-- <p id="EndlessLogoText" class='blink-2'>Endless</p> -->
+    </div>
 </body>
-
+<script src="{% static 'star.js' %}" type="module"></script>
 <script src="{% static 'arrowbox.js' %}" type="module"></script>
 <script src="{% static 'notify.js' %}" type="module"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

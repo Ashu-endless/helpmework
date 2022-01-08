@@ -24,13 +24,13 @@ document.querySelector('#login_btn').addEventListener('click', function (e) {
         password: this.parentNode.querySelector('[name="password"]').value,
         csrfmiddlewaretoken: csrftoken,
     }
-    console.log(data)
+    //console.log(data)
     $.ajax({
         url: url,
         type: 'POST',
         data: data,
     }).done(function (response) {
-        console.log(response)
+        //console.log(response)
         if(response.success == "True"){
         window.location.replace("/");}
         else{
